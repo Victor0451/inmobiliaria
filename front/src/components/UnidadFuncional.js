@@ -1,40 +1,56 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { runInThisContext } from "vm";
 
 export default class UnidadFuncional extends Component {
+
   render() {
+
     return (
-      <div>
+      <div className="form-style-8">
         <h2> Unidades Funcionales </h2>
-        <table className="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">First</th>
-              <th scope="col">Last</th>
-              <th scope="col">Handle</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
-              <td>the Bird</td>
-              <td>@twitter</td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="table-wrapper table-responsive">
+          <table className="fl-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">First</th>
+                <th scope="col">Last</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              {Object.keys(this.props.unfucselect).map(key => {
+                return (
+                  <tr key={this.props.unfucselect.id}>
+                    <td>{this.props.unfucselect.padron}</td>
+                    <td>{this.props.unfucselect.poligono}</td>
+                    <td>{this.props.unfucselect.medidor}</td>
+                    <td>{this.props.unfucselect.medidor}</td>
+                    <td>{this.props.unfucselect.medidor}</td>
+                    <td>{this.props.unfucselect.medidor}</td>
+                    <td>{this.props.unfucselect.medidor}</td>
+                    <td>{this.props.unfucselect.medidor}</td>
+                    <td>
+                      <Link
+                        to={"/crearcontrato/"}
+                        className="btn btn-primary btn-sm"
+                      >
+                        Crear Contrato
+                      </Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }

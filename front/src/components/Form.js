@@ -1,115 +1,68 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import UnidadFuncional from "./UnidadFuncional";
+import axios from "axios";
 
 export default class Form extends Component {
-  showDiv = e => {
-    e.preventDefault();
+  state = {
+    unfucselect: {}
+  };
 
-    let divBaño = document.getElementById("bano");
-    let divDepto = document.getElementById("depto");
-    let select = document.getElementById("tipoalq");
+  selectvalue = () => {
+    let doc = document.getElementById("locador");
+    let docval = doc.value;
+    let url = `http://localhost:3002/getunidadfunc/${docval}`;
 
-    if (select.value === "1" || select.value === "2") {
-      divBaño.hidden = false;
-    } else {
-      divDepto.hidden = false;
-    }
+    axios
+      .get(url)
+      .then(unfucselect => {
+        this.setState({
+          unfucselect: unfucselect.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    console.log(this.state.unfucselect);
+
   };
   render() {
     return (
       <div>
-        <form>
+        <form className="form-style-8">
           <div className="row">
             <div className="col-md-12">
               <h2>Locador</h2>
-              <select className="custom-select">
-                <option selected>Locador</option>
-                <option value="1">Juaquin</option>
-                <option value="2">Amelia</option>
-              </select>
+
+              <div className="form-group ">
+                <p className="has-dynamic-label">
+                  <select
+                    id="locador"
+                    className=""
+                    name="locador"
+                    required
+                    onChange={this.selectvalue.bind(this)}
+                  >
+                    <option value="">Locador</option>
+                    <option value="111">Juaquin</option>
+                    <option value="24399134">Amelia</option>
+                  </select>
+                </p>
+              </div>
             </div>
           </div>
-          <div className="row mt-4">
-            <div className="col-md-12">
-              <h2>Alquiler</h2>
+          <div className="row ">
+            <div className="col-md-12 ">
+              <h2 className="mt-4">Alquiler</h2>
 
-              <select className="custom-select" id="tipoalq">
-                <option selected>Alquiler</option>
-                <option value="1">Local</option>
-                <option value="2">Oficina</option>
-                <option value="2">Departamento</option>
-              </select>
-            </div>
-
-            <div className="col-md-12" id="bano" hidden="true">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <div className="input-group-text">
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox for following text input"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  aria-label="Text input with checkbox"
-                  placeholder="Con Baño"
-                />
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <div className="input-group-text">
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox for following text input"
-                      placeholder="Sin Baño"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  aria-label="Text input with checkbox"
-                  placeholder="Sin Baño"
-                />
-              </div>
-            </div>
-            <div className="col-md-12" id="depto" hidden="true">
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <div className="input-group-text">
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox for following text input"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  aria-label="Text input with checkbox"
-                  placeholder="Monoambiente"
-                />
-              </div>
-
-              <div className="input-group mb-3">
-                <div className="input-group-prepend">
-                  <div className="input-group-text">
-                    <input
-                      type="checkbox"
-                      aria-label="Checkbox for following text input"
-                    />
-                  </div>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  aria-label="Text input with checkbox"
-                  placeholder="Dos ambientes"
-                />
+              <div className="form-group ">
+                <p className="has-dynamic-label">
+                  <select id="uf" className="" name="uf" required>
+                    <option value="">Tipo de UF</option>
+                    <option value="">Oficina</option>
+                    <option value="">Local</option>
+                    <option value="">Departamento</option>
+                  </select>
+                </p>
               </div>
             </div>
           </div>
@@ -117,6 +70,11 @@ export default class Form extends Component {
             Buscar
           </button>
         </form>
+
+        <div>
+          <UnidadFuncional 
+          unfucselect = {this.state.unfucselect}/>
+        </div>
       </div>
     );
   }
