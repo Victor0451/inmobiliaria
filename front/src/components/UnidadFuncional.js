@@ -1,12 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
-import { runInThisContext } from "vm";
+
+
 
 export default class UnidadFuncional extends Component {
-
   render() {
-
     return (
       <div className="form-style-8">
         <h2> Unidades Funcionales </h2>
@@ -14,40 +12,59 @@ export default class UnidadFuncional extends Component {
           <table className="fl-table">
             <thead>
               <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
+                <th scope="col">Padron</th>
+                <th scope="col">Poligono</th>
+                <th scope="col">Medidor</th>
+                <th scope="col">Direccion (plan)</th>
+                <th scope="col">Direccion (boleta)</th>
+                <th scope="col">Unidad Funcional</th>
+                <th scope="col">Numero de Unidad Funcional</th>
                 <th scope="col">Acciones</th>
-                <th scope="col">Acciones</th>
-                <th scope="col">Acciones</th>
-                <th scope="col">Acciones</th>
-                <th scope="col">Acciones</th>
-                <th scope="col">Acciones</th>
+           
               </tr>
             </thead>
             <tbody>
-              {Object.keys(this.props.unfucselect).map(key => {
-                return (
-                  <tr key={this.props.unfucselect.id}>
-                    <td>{this.props.unfucselect.padron}</td>
-                    <td>{this.props.unfucselect.poligono}</td>
-                    <td>{this.props.unfucselect.medidor}</td>
-                    <td>{this.props.unfucselect.medidor}</td>
-                    <td>{this.props.unfucselect.medidor}</td>
-                    <td>{this.props.unfucselect.medidor}</td>
-                    <td>{this.props.unfucselect.medidor}</td>
-                    <td>{this.props.unfucselect.medidor}</td>
-                    <td>
-                      <Link
-                        to={"/crearcontrato/"}
-                        className="btn btn-primary btn-sm"
-                      >
-                        Crear Contrato
-                      </Link>
-                    </td>
-                  </tr>
-                );
-              })}
+            {this.props.unfucselect.map((item, index) => {
+                            return (
+
+                                <tr key={index}>
+
+                                    <td className="toggler">
+                                        {item.padron}
+                                    </td>
+                                    <td>
+                                        {item.poligono}
+                                    </td>
+                                    <td>
+                                        {item.medidor}
+                                    </td>
+                                    <td>
+                                        {item.dir_plan}
+                                    </td>
+                                    <td>
+                                        {item.dir_boleta}
+                                    </td>
+                                    <td>
+                                        {item.uf_tipo}
+                                    </td>
+                                    <td>
+                                        {item.uf_tiponum}
+                                    </td>
+                                   
+                                    <td>
+
+                                        <Link to={"/crearcontrato/" + item.uf_tiponum} className="btn btn-primary btn-block" >Selecionar</Link>
+                                       
+                                    </td>
+
+                                </tr>
+
+
+
+                            );
+
+                        })}
+
             </tbody>
           </table>
         </div>

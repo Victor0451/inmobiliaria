@@ -2,9 +2,10 @@ import React, { Component } from "react";
 import UnidadFuncional from "./UnidadFuncional";
 import axios from "axios";
 
+
 export default class Form extends Component {
   state = {
-    unfucselect: {}
+    unfucselect: []
   };
 
   selectvalue = () => {
@@ -22,8 +23,8 @@ export default class Form extends Component {
       .catch(err => {
         console.log(err);
       });
-    console.log(this.state.unfucselect);
 
+    console.log(this.state.unfucselect);
   };
   render() {
     return (
@@ -72,10 +73,12 @@ export default class Form extends Component {
         </form>
 
         <div>
-          <UnidadFuncional 
-          unfucselect = {this.state.unfucselect}/>
+          <UnidadFuncional unfucselect={this.state.unfucselect} />
         </div>
+     
       </div>
+
+
     );
   }
 }
