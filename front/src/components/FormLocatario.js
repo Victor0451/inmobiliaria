@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+
 
 export default function FormLocatario(props) {
   return (
@@ -34,7 +34,7 @@ export default function FormLocatario(props) {
               <input
                 type="text"
                 className=""
-                name="uf"
+                name="uftipo"
                 placeholder="Unidad Funcional"
                 value={props.uf.uf_tipo}
                 readOnly
@@ -47,7 +47,7 @@ export default function FormLocatario(props) {
               <input
                 type="text"
                 className=""
-                name="uf"
+                name="ufnum"
                 placeholder="Unidad Funcional"
                 value={props.uf.uf_tiponum}
                 readOnly
@@ -158,13 +158,26 @@ export default function FormLocatario(props) {
               <input
                 type="text"
                 className=""
-                name="uf2"
+                name="uftipo2"
                 value={props.uf.uf_tipo}
                 readOnly
                 placeholder="Unidad Funcional"
                 required
               />
               <label for="in-range-input">Unidad Funcional</label>
+            </p>
+
+            <p className="has-dynamic-label">
+              <input
+                type="text"
+                className=""
+                name="ufnum2"
+                value={props.uf.uf_tiponum}
+                readOnly
+                placeholder="Unidad Funcional"
+                required
+              />
+              <label for="in-range-input">Nombre Unidad Funcional</label>
             </p>
 
             <p className="has-dynamic-label">

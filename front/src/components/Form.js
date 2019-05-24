@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import UnidadFuncional from "./UnidadFuncional";
+import GridUnidadFuncional from "./GridUnidadFuncional";
 import axios from "axios";
 
 
@@ -73,7 +73,7 @@ export default class Form extends Component {
         </form>
 
         <div>
-          <UnidadFuncional unfucselect={this.state.unfucselect} />
+          <GridUnidadFuncional unfucselect={this.state.unfucselect} />
         </div>
      
       </div>

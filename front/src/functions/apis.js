@@ -1,6 +1,5 @@
 import axios from "axios";
 
-
 //Insert 1 locatario
 
 export function postLocatario(
@@ -8,12 +7,12 @@ export function postLocatario(
   apellidovalue,
   dnivalue,
   cuitvalue,
-  unfuncvalue,
+  ufnumvalue,
+  uftipovalue,
   domiciliovalue,
   barriovalue,
   localidadvalue,
   idcontrato,
-  unfunnum,
   loc_tipo
 ) {
   let url = `http://localhost:3002/postlocatario`;
@@ -23,12 +22,12 @@ export function postLocatario(
     apellido: apellidovalue,
     dni: dnivalue,
     cuit: cuitvalue,
-    unfunc: unfuncvalue,
+    uf_tipo: uftipovalue,
+    ufnum: ufnumvalue,
     domicilio: domiciliovalue,
     barrio: barriovalue,
     localidad: localidadvalue,
     idcontrato: idcontrato,
-    uf_tiponum: unfunnum,
     loc_tipo: loc_tipo
   };
 
@@ -36,45 +35,6 @@ export function postLocatario(
 
   axios
     .post(url, locatario1)
-    .then(response => {
-      console.log(response);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
-
-//Insert 2 locatario
-
-export function postLocatario2(
-  nombrevalue2,
-  apellidovalue2,
-  dnivalue2,
-  cuitvalue2,
-  unfuncvalue2,
-  domiciliovalue2,
-  barriovalue2,
-  localidadvalue2,
-  idcontratovalue2,
-  loc_tipo2
-) {
-  let url = `http://localhost:3002/postlocatario`;
-
-  const locatario2 = {
-    nombre: nombrevalue2,
-    apellido: apellidovalue2,
-    dni: dnivalue2,
-    cuit: cuitvalue2,
-    unfunc: unfuncvalue2,
-    domicilio: domiciliovalue2,
-    barrio: barriovalue2,
-    localidad: localidadvalue2,
-    idcontrato: idcontratovalue2,
-    loc_tipo: loc_tipo2
-  };
-
-  axios
-    .post(url, locatario2)
     .then(response => {
       console.log(response);
     })
@@ -95,6 +55,13 @@ export function getUFSel(id) {
 
 export function getLocatarioSel(id) {
   let url = `http://localhost:3002/getlocatarioselect/${id}`;
+
+  return axios.get(url);
+}
+
+//Get Locatario2 by ID
+export function getLocatario2Sel(id) {
+  let url = `http://localhost:3002/getlocatario2select/${id}`;
 
   return axios.get(url);
 }

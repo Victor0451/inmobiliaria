@@ -1,6 +1,50 @@
 import React, { Component } from "react";
+import { getLocatarioSel, getLocatario2Sel, getUFSel } from "../functions/apis";
 
 export default class Contrato2Locat extends Component {
+  state = {
+    locatario1: {},
+    locatario2: {},
+    uf: {}
+  };
+
+  getLocatarioWhitApi = () => {
+    let id = this.props.match.params.id;
+    getLocatarioSel(id)
+      .then(locatario1 => {
+        this.setState({
+          locatario1: locatario1.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getLocatario2WhitApi = () => {
+    let id = this.props.match.params.id;
+    getLocatario2Sel(id)
+      .then(locatario2 => {
+        this.setState({
+          locatario2: locatario2.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  getUFWhitApi = () => {
+    let id = this.props.match.params.id;
+    getUFSel(id)
+      .then(uf => {
+        this.setState({
+          uf: uf.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
+  componentDidMount() {
+    this.getLocatarioWhitApi();
+    this.getUFWhitApi();
+  }
   render() {
     let month = new Array();
     month[0] = "Enero";
@@ -23,6 +67,7 @@ export default class Contrato2Locat extends Component {
     let year = newDate.getFullYear();
 
     let locatario = this.props.locatario1;
+    let locatario2 = this.props.locatario2;
     let uf = this.props.uf;
 
     return (
@@ -41,12 +86,16 @@ export default class Contrato2Locat extends Component {
           <strong>{locatario.nombre}</strong> ,<strong>{locatario.cuit}</strong>
           con domicilio en <strong>{locatario.domicilio}</strong> - B°
           <strong>{locatario.barrio}</strong> –
-          <strong>{locatario.localidad}</strong>, –Provincia de Jujuy- ,
-          –Provincia de Jujuy-, y el Sr. FARFAN EDUARDO RENE, CUIT 20-10853949-7
-          con domicilio en Ricardo hueda n°42 - B° AMPUAP bajo la viña – san
-          salvador de jujuy, –Provincia de Jujuy- en adelante los “LOCATARIOS”,
-          se conviene en celebrar el presente Contrato de Locación Comercial, el
-          que se regirá conforme a las siguientes cláusulas:
+          <strong>{locatario.localidad}</strong>, –Provincia de Jujuy-, y el Sr.
+          <strong> {locatario2.apellido} </strong>
+          <strong>{locatario2.nombre}</strong>, CUIT
+          <strong>{locatario2.cuit}</strong>
+          con domicilio en <strong>{locatario2.domicilio}</strong> - B°
+          <strong>{locatario2.barrio}</strong> –
+          <strong>{locatario2.localidad}</strong>, –Provincia de Jujuy- en
+          adelante los “LOCATARIOS”, se conviene en celebrar el presente
+          Contrato de Locación Comercial, el que se regirá conforme a las
+          siguientes cláusulas:
         </p>
 
         <p className="text-justify">

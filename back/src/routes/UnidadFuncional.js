@@ -50,7 +50,23 @@ router.get("/getufselect/:id", (req, res, next) => {
 
 router.get("/getlocatarioselect/:id", (req, res, next) => {
   mysqlConnection.query(
-    "SELECT * FROM locatario WHERE uf_tiponum = ? ORDER BY uf_tiponum DESC",
+    "SELECT * FROM locatario WHERE id_contrato = ? and loc_tipo = 1",
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) {
+        res.json(rows[0]);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
+//GET LOCATARIO2 BY ID WHERE uf_tiponum = id
+
+router.get("/getlocatario2select/:id", (req, res, next) => {
+  mysqlConnection.query(
+    "SELECT * FROM locatario WHERE id_contrato = ? and loc_tipo = 2",
     [req.params.id],
     (err, rows, fields) => {
       if (!err) {
@@ -88,12 +104,12 @@ router.post("/postlocatario", (req, res) => {
     apellido: req.body.apellido,
     dni: req.body.dni,
     cuit: req.body.cuit,
-    uf_alquilada: req.body.unfunc,
+    uf_alquilada: req.body.uf_tipo,
     domicilio: req.body.domicilio,
     barrio: req.body.barrio,
     localidad: req.body.localidad,
     id_contrato: req.body.idcontrato,
-    uf_tiponum: req.body.uf_tiponum,
+    uf_tiponum: req.body.ufnum,
     loc_tipo: req.body.loc_tipo
   };
 
