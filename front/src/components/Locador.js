@@ -1,12 +1,71 @@
-import React, { Component } from 'react'
-import FormLocador from './FormLocador';
+import React, { Component } from "react";
+import FormLocador from "./FormLocador";
+import { postLocador } from "../functions/apis";
 
 export default class Locador extends Component {
-    render() {
-        return (
-            <div>
-                <FormLocador/>
-            </div>
-        )
+  state = {
+    locador: {
+      dni: "",
+      apellido: "",
+      nombre: "",
+      domicilio: "",
+      barrio: "",
+      localidad: "",
+      provincia: ""
     }
+  };
+
+  crearLocador = e => {
+    e.preventDefault();
+
+    const {
+      dni,
+      apellido,
+      nombre,
+      domicilio,
+      barrio,
+      localidad,
+      provincia
+    } = e.target.elements;
+
+    let dnivalue = dni.value;
+    let apellidovalue = apellido.value;
+    let nombrevalue = nombre.value;
+    let domiciliovalue = domicilio.value;
+    let barriovalue = barrio.value;
+    let localidadvalue = localidad.value;
+    let provinciavalue = provincia.value;
+
+    this.setState({
+      locador: {
+        dni: dnivalue,
+        apellido: apellidovalue,
+        nombre: nombrevalue,
+        domicilio: domiciliovalue,
+        barrio: barriovalue,
+        localidad: localidadvalue,
+        provincia: provinciavalue
+      }
+    });
+
+    postLocador(
+      dnivalue,
+      apellidovalue,
+      nombrevalue,
+      domiciliovalue,
+      barriovalue,
+      localidadvalue,
+      provinciavalue
+    );
+
+    e.target.reset();
+  };
+
+  render() {
+    return (
+      <div>
+        <FormLocador crearLocador={this.crearLocador} />
+      </div>
+    );
+  }
 }

@@ -1,15 +1,17 @@
 import React, { Component } from "react";
-import { getLocatarioSel, getLocatario2Sel, getUFSel } from "../functions/apis";
+import { getLocatarioSel, getLocatario2Sel, getUFSel, getLocadorSel } from "../functions/apis";
 
 export default class Contrato2Locat extends Component {
   state = {
     locatario1: {},
     locatario2: {},
-    uf: {}
+    uf: {},
+    contrato: {},
+    locador: {}
   };
 
   getLocatarioWhitApi = () => {
-    let id = this.props.match.params.id;
+    let id = this.state.contrato.dni_locatario;
     getLocatarioSel(id)
       .then(locatario1 => {
         this.setState({
@@ -31,7 +33,7 @@ export default class Contrato2Locat extends Component {
   };
 
   getUFWhitApi = () => {
-    let id = this.props.match.params.id;
+    let id = this.state.contrato.uf_tiponum;
     getUFSel(id)
       .then(uf => {
         this.setState({
@@ -40,11 +42,24 @@ export default class Contrato2Locat extends Component {
       })
       .catch(err => console.log(err));
   };
+  getLocadorWhitApi = () => {
+    let id = this.state.contrato.titular;
+    getLocadorSel(id)
+      .then(locador => {
+        this.setState({
+          locador: locador.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   componentDidMount() {
+    this.getContratoWhitApi();
     this.getLocatarioWhitApi();
     this.getUFWhitApi();
   }
+
+  
   render() {
     let month = new Array();
     month[0] = "Enero";
@@ -68,7 +83,8 @@ export default class Contrato2Locat extends Component {
 
     let locatario = this.props.locatario1;
     let locatario2 = this.props.locatario2;
-    let uf = this.props.uf;
+    let uf = this.props.uf; 
+    let locador = this.state.locador;
 
     return (
       <div className="container">

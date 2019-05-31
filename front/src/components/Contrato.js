@@ -1,14 +1,32 @@
 import React, { Component } from "react";
-import { getLocatarioSel, getUFSel } from "../functions/apis";
+import {
+  getLocatarioSel,
+  getUFSel,
+  getContratoSel,
+  getLocadorSel
+} from "../functions/apis";
 
 export default class Contrato extends Component {
   state = {
     locatario1: {},
-    uf: {}
+    uf: {},
+    contrato: {},
+    locador: {}
+  };
+
+  getContratoWhitApi = () => {
+    let id = this.props.match.params.id;
+    getContratoSel(id)
+      .then(contrato => {
+        this.setState({
+          contrato: contrato.data
+        });
+      })
+      .catch(err => console.log(err));
   };
 
   getLocatarioWhitApi = () => {
-    let id = this.props.match.params.id;
+    let id = this.state.contrato.dni_locatario;
     getLocatarioSel(id)
       .then(locatario1 => {
         this.setState({
@@ -19,7 +37,7 @@ export default class Contrato extends Component {
   };
 
   getUFWhitApi = () => {
-    let id = this.props.match.params.id;
+    let id = this.state.contrato.uf_tiponum;
     getUFSel(id)
       .then(uf => {
         this.setState({
@@ -28,10 +46,27 @@ export default class Contrato extends Component {
       })
       .catch(err => console.log(err));
   };
+  getLocadorWhitApi = () => {
+    let id = this.state.contrato.titular;
+    getLocadorSel(id)
+      .then(locador => {
+        this.setState({
+          locador: locador.data
+        });
+      })
+      .catch(err => console.log(err));
+  };
 
   componentDidMount() {
-    this.getLocatarioWhitApi();
+    this.getContratoWhitApi();
+    setInterval(() => {
+      this.getLocatarioWhitApi();
+    }, 20);
+
+    setInterval(() => {
     this.getUFWhitApi();
+     
+    }, 40);
   }
 
   render() {
@@ -54,8 +89,10 @@ export default class Contrato extends Component {
     let monthnumber = newDate.getMonth();
     let monthname = month[newDate.getMonth()];
     let year = newDate.getFullYear();
+
     let locatario = this.state.locatario1;
     let uf = this.state.uf;
+    let locador = this.state.locador;
 
     return (
       <div className="container" id="imprimir">

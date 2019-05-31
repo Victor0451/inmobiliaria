@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function FormUnidadFuncional() {
+export default function FormUnidadFuncional(props) {
     return (
         <div>
-             <form className="form-style-8" onSubmit="" id="form">
+             <form className="form-style-8" onSubmit={props.crearUnidadFuncional} id="form">
         <h2>Datos del locador</h2>
 
         <div className="row">

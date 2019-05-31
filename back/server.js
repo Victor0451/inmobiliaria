@@ -16,6 +16,10 @@ app.use(bodyparser.json());
 
 //Routes
 app.use(require('./src/routes/UnidadFuncional'));
+app.use(require('./src/routes/Locatario'));
+app.use(require('./src/routes/Locador'));
+app.use(require('./src/routes/Contrato'));
+
 
 
 // server listening

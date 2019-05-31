@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import GridUnidadFuncional from "./GridUnidadFuncional";
-import axios from "axios";
-
+import { getUFByTitular } from "../functions/apis";
 
 export default class Form extends Component {
   state = {
@@ -11,10 +10,8 @@ export default class Form extends Component {
   selectvalue = () => {
     let doc = document.getElementById("locador");
     let docval = doc.value;
-    let url = `http://localhost:3002/getunidadfunc/${docval}`;
 
-    axios
-      .get(url)
+    getUFByTitular(docval)
       .then(unfucselect => {
         this.setState({
           unfucselect: unfucselect.data
@@ -75,10 +72,7 @@ export default class Form extends Component {
         <div>
           <GridUnidadFuncional unfucselect={this.state.unfucselect} />
         </div>
-     
       </div>
-
-
     );
   }
 }
