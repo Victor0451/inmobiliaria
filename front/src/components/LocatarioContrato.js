@@ -35,7 +35,11 @@ export default class LocatarioContrato extends Component {
       loc_tipo2: ""
     },
 
-    contrato: {}
+    contrato: {
+      id_contrato: "",
+      pagos_contrato: "",
+      pagos_pagare: ""
+    }
   };
 
   crearLocatarioContrato = e => {
@@ -53,7 +57,9 @@ export default class LocatarioContrato extends Component {
       uftipo,
       domicilio,
       barrio,
-      localidad
+      localidad,
+      pagos_contrato,
+      pagos_pagare
     } = e.target.elements;
 
     let nombrevalue = nombre.value;
@@ -65,6 +71,8 @@ export default class LocatarioContrato extends Component {
     let domiciliovalue = domicilio.value;
     let barriovalue = barrio.value;
     let localidadvalue = localidad.value;
+    let pcontratovalue = pagos_contrato.value;
+    let ppagarevalue = pagos_pagare.value;
 
     let unfunnum = this.state.uf.uf_tiponum;
     let idcontrato = `CONT-${dnivalue}-${unfunnum}`;
@@ -82,7 +90,11 @@ export default class LocatarioContrato extends Component {
         localidad: localidadvalue,
         loc_tipo: 1
       },
-      contrato: idcontrato
+      contrato: {
+        id_contrato: idcontrato,
+        pagos_contrato: pcontratovalue,
+        pagos_pagare: ppagarevalue
+      }
     });
 
     confirmAlert({
@@ -129,7 +141,15 @@ export default class LocatarioContrato extends Component {
               barriovalue,
               localidadvalue
             );
-            postContrato(idcontrato, dniloc, dniloc2, ufnumvalue, dnilocador);
+            postContrato(
+              idcontrato,
+              dniloc,
+              dniloc2,
+              ufnumvalue,
+              dnilocador,
+              pcontratovalue,
+              ppagarevalue
+            );
 
             this.props.history.push(`/contrato/${idcontrato}`);
 
@@ -168,7 +188,7 @@ export default class LocatarioContrato extends Component {
     let domiciliovalue = domicilio2.value;
     let barriovalue = barrio2.value;
     let localidadvalue = localidad2.value;
-    let idcontrato = contrato.value;
+    let idcontrato = this.state.contrato.id_contrato;
 
     this.setState({
       locatario2: {
@@ -198,8 +218,18 @@ export default class LocatarioContrato extends Component {
     let dniloc = this.state.locatario1.dni;
     let dniloc2 = dnivalue;
     let dnilocador = this.state.uf.titular;
+    let pcontratovalue = this.state.contrato.pagos_contrato;
+    let ppagarevalue = this.state.contrato.pagos_pagare;
 
-    postContrato(idcontrato, dniloc, dniloc2, ufnumvalue, dnilocador);
+    postContrato(
+      idcontrato,
+      dniloc,
+      dniloc2,
+      ufnumvalue,
+      dnilocador,
+      pcontratovalue,
+      ppagarevalue
+    );
 
     form2.hidden = true;
     form.hidden = true;

@@ -1,10 +1,13 @@
 import React from "react";
 
-
 export default function FormLocatarioContrato(props) {
   return (
     <div>
-      <form className="form-style-8" onSubmit={props.crearLocatarioContrato} id="form">
+      <form
+        className="form-style-8"
+        onSubmit={props.crearLocatarioContrato}
+        id="form"
+      >
         <h2>Datos del locatario</h2>
         <div className="row">
           <div className="col-md-6">
@@ -54,6 +57,28 @@ export default function FormLocatarioContrato(props) {
                 required
               />
               <label for="in-range-input">Numero de Unidad Funcional</label>
+            </p>
+
+            <p className="has-dynamic-label">
+              <input
+                type="text"
+                className=""
+                name="pagos_contrato"
+                placeholder="Pagos por Contrato"
+                required
+              />
+              <label for="in-range-input">Pagos por Contrato</label>
+            </p>
+
+            <p className="has-dynamic-label">
+              <input
+                type="text"
+                className=""
+                name="pagos_pagare"
+                placeholder="Pagos con Pagare"
+                required
+              />
+              <label for="in-range-input">Pagos con Pagare</label>
             </p>
           </div>
 
@@ -114,11 +139,10 @@ export default function FormLocatarioContrato(props) {
             </p>
           </div>
         </div>
-      
-          <button type="submit"  className="btn btn-primary btn-block mt-4">
-            Cargar
-          </button>
-        
+
+        <button type="submit" className="btn btn-primary btn-block mt-4">
+          Cargar
+        </button>
       </form>
 
       {/* FORMULARIO PARA EL SEGUNDO LOCATARIO */}
@@ -185,7 +209,7 @@ export default function FormLocatarioContrato(props) {
                 type="text"
                 className=""
                 name="contrato"
-                value={props.contrato}
+                value={props.contrato.id_contrato}
                 readOnly
                 placeholder="Numero de Contrato"
                 required

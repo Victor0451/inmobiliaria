@@ -1,8 +1,9 @@
 import axios from "axios";
-import toastr from '../utils/toastr'
+import toastr from "../utils/toastr";
+import { async } from "q";
 
 export function getUFByTitular(docval) {
-  let url = `http://192.168.1.102:3002/getunidadfunc/${docval}`;
+  let url = `http://192.168.1.108:3002/getunidadfunc/${docval}`;
 
   return axios.get(url);
 }
@@ -10,7 +11,7 @@ export function getUFByTitular(docval) {
 //Get UF by ID
 
 export function getUFSel(id) {
-  let url = `http://192.168.1.102:3002/getufselect/${id}`;
+  let url = `http://192.168.1.108:3002/getufselect/${id}`;
 
   return axios.get(url);
 }
@@ -18,21 +19,21 @@ export function getUFSel(id) {
 //Get Locatario by ID
 
 export function getLocatarioSel(id) {
-  let url = `http://192.168.1.102:3002/getlocatarioselect/${id}`;
+  let url = `http://192.168.1.108:3002/getlocatarioselect/${id}`;
 
   return axios.get(url);
 }
 
 //Get Locatario2 by ID
 export function getLocatario2Sel(id) {
-  let url = `http://192.168.1.102:3002/getlocatario2select/${id}`;
+  let url = `http://192.168.1.108:3002/getlocatario2select/${id}`;
 
   return axios.get(url);
 }
 
 //Get locador by ID
 export function getLocadorSel(id) {
-  let url = `http://192.168.1.102:3002/getlocadorselect/${id}`;
+  let url = `http://192.168.1.108:3002/getlocadorselect/${id}`;
 
   return axios.get(url);
 }
@@ -40,7 +41,7 @@ export function getLocadorSel(id) {
 //Get UF by ID
 
 export function getIdCont(id) {
-  let url = `http://192.168.1.102:3002/getidcont/${id}`;
+  let url = `http://192.168.1.108:3002/getidcont/${id}`;
 
   return axios.get(url);
 }
@@ -48,46 +49,43 @@ export function getIdCont(id) {
 //Get Contrato
 
 export function getContratoSel(id) {
-  let url = `http://192.168.1.102:3002/getcontratoselect/${id}`;
+  let url = `http://192.168.1.108:3002/getcontratoselect/${id}`;
 
   return axios.get(url);
 }
 
-
 //Insert locatario
 
-export function postLocatario(
+export async function postLocatario(
   nombrevalue,
   apellidovalue,
   dnivalue,
-  cuitvalue,  
+  cuitvalue,
   domiciliovalue,
   barriovalue,
   localidadvalue
- 
 ) {
-  let url = `http://192.168.1.102:3002/postlocatario`;
+  let url = `http://192.168.1.108:3002/postlocatario`;
 
   const locatario = {
     nombre: nombrevalue,
     apellido: apellidovalue,
     dni: dnivalue,
-    cuit: cuitvalue,   
+    cuit: cuitvalue,
     domicilio: domiciliovalue,
     barrio: barriovalue,
     localidad: localidadvalue
-  }
+  };
 
-  axios
+  await axios
     .post(url, locatario)
     .then(response => {
       console.log(response);
-      toastr.success("Se guardo el registro exitosamente","ATENCION")
+      toastr.success("Se guardo el registro exitosamente", "ATENCION");
     })
     .catch(err => {
       console.log(err);
-      toastr.success(`Se detecto el siguiente error: ${err}`,"ATENCION")
-
+      toastr.success(`Se detecto el siguiente error: ${err}`, "ATENCION");
     });
 }
 
@@ -103,7 +101,7 @@ export async function postUnidadFuncional(
   uf_tiponumvalue,
   titularvalue
 ) {
-  let url = `http://192.168.1.102:3002/postunidadfuncional`;
+  let url = `http://192.168.1.108:3002/postunidadfuncional`;
 
   const unidadfuncinal = {
     padron: padronvalue,
@@ -120,12 +118,11 @@ export async function postUnidadFuncional(
     .post(url, unidadfuncinal)
     .then(response => {
       console.log(response);
-      toastr.success("Se guardo el registro exitosamente","ATENCION")
+      toastr.success("Se guardo el registro exitosamente", "ATENCION");
     })
     .catch(err => {
       console.log(err);
-      toastr.success(`Se detecto el siguiente error: ${err}`,"ATENCION")
-
+      toastr.success(`Se detecto el siguiente error: ${err}`, "ATENCION");
     });
 }
 
@@ -133,14 +130,14 @@ export async function postUnidadFuncional(
 
 export async function postLocador(
   dnivalue,
-      apellidovalue,
-      nombrevalue,
-      domiciliovalue,
-      barriovalue,
-      localidadvalue,
-      provinciavalue
+  apellidovalue,
+  nombrevalue,
+  domiciliovalue,
+  barriovalue,
+  localidadvalue,
+  provinciavalue
 ) {
-  let url = `http://192.168.1.102:3002/postlocador`;
+  let url = `http://192.168.1.108:3002/postlocador`;
 
   const locador = {
     dni: dnivalue,
@@ -156,12 +153,11 @@ export async function postLocador(
     .post(url, locador)
     .then(response => {
       console.log(response);
-      toastr.success("Se guardo el registro exitosamente","ATENCION")
+      toastr.success("Se guardo el registro exitosamente", "ATENCION");
     })
     .catch(err => {
       console.log(err);
-      toastr.success(`Se detecto el siguiente error: ${err}`,"ATENCION")
-
+      toastr.success(`Se detecto el siguiente error: ${err}`, "ATENCION");
     });
 }
 
@@ -172,28 +168,30 @@ export async function postContrato(
   dniloc,
   dniloc2,
   ufnumvalue,
-  dnilocador
+  dnilocador,
+  pcontratovalue,
+  ppagarevalue
 ) {
-  let url = `http://192.168.1.102:3002/postcontrato`;
+  let url = `http://192.168.1.108:3002/postcontrato`;
 
   const contrato = {
     id_contrato: idcontrato,
     dni_locatario: dniloc,
     dni_locatario2: dniloc2,
     uf_tiponum: ufnumvalue,
-    locador: dnilocador
+    locador: dnilocador,
+    pagos_contrato: pcontratovalue,
+    pagos_pagare: ppagarevalue
   };
 
   await axios
     .post(url, contrato)
     .then(response => {
       console.log(response);
-      toastr.success("Se guardo el registro exitosamente","ATENCION")
+      toastr.success("Se guardo el registro exitosamente", "ATENCION");
     })
     .catch(err => {
       console.log(err);
-      toastr.success(`Se detecto el siguiente error: ${err}`,"ATENCION")
-
+      toastr.success(`Se detecto el siguiente error: ${err}`, "ATENCION");
     });
 }
-
