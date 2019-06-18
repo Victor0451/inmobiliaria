@@ -66,6 +66,8 @@ export default class Contrato extends Component {
     window.print();
 
     document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
   };
 
   imprimirCD = () => {
@@ -77,6 +79,8 @@ export default class Contrato extends Component {
     window.print();
 
     document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
   };
 
   componentDidMount() {
@@ -334,7 +338,7 @@ export default class Contrato extends Component {
             <strong> {monthname}</strong> de <strong>{year}</strong>.-
           </p>
         </div>
-        
+
         <button
           type="submit"
           className="btn btn-primary mt-4"

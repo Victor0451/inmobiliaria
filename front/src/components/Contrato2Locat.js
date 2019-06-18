@@ -78,9 +78,12 @@ export default class Contrato2Locat extends Component {
     window.print();
 
     document.body.innerHTML = contenidoOrg;
+
+    window.location.reload(true);
+
   };
 
-  imprimirCD = () => {
+  imprimirCD =() => {
     let contenido = document.getElementById("contradocumento").innerHTML;
     let contenidoOrg = document.body.innerHTML;
 
@@ -89,10 +92,14 @@ export default class Contrato2Locat extends Component {
     window.print();
 
     document.body.innerHTML = contenidoOrg;
+    
+    window.location.reload(true);
   };
 
   componentDidMount() {
-    this.getContratoWhitApi();
+    setTimeout(() => {
+      this.getContratoWhitApi();
+    }, 150);
 
     setTimeout(() => {
       this.getLocadorWhitApi();
