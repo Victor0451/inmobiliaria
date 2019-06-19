@@ -1,60 +1,20 @@
 import React, { Component } from "react";
-import {
-  getLocatarioSel,
-  getUFSel,
-  getContratoSel,
-  getLocadorSel
-} from "../functions/apis";
 
-export default class Contrato extends Component {
+//redux
+import { connect } from "react-redux";
+import { mostrarUnidadFuncional } from "../actions/unidadFuncionalActions";
+import { mostrarLocatario } from '../actions/locatarioActions';
+import { mostrarContrato } from '../actions/contratosActions';
+import { mostrarLocador } from '../actions/locadoresActions';
+
+
+
+class Contrato extends Component {
   state = {
-    locatario1: {},
-    uf: {},
+    locatario: {},
+    unidadFuncional: {},
     contrato: {},
     locador: {}
-  };
-
-  getContratoWhitApi = () => {
-    let id = this.props.match.params.id;
-    getContratoSel(id)
-      .then(contrato => {
-        this.setState({
-          contrato: contrato.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  getLocatarioWhitApi = () => {
-    let id = this.state.contrato.dni_locatario;
-    getLocatarioSel(id)
-      .then(locatario1 => {
-        this.setState({
-          locatario1: locatario1.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  getUFWhitApi = () => {
-    let id = this.state.contrato.uf_tiponum;
-    getUFSel(id)
-      .then(uf => {
-        this.setState({
-          uf: uf.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-  getLocadorWhitApi = () => {
-    let id = this.state.contrato.locador;
-    getLocadorSel(id)
-      .then(locador => {
-        this.setState({
-          locador: locador.data
-        });
-      })
-      .catch(err => console.log(err));
   };
 
   imprimir = () => {
@@ -83,23 +43,81 @@ export default class Contrato extends Component {
     window.location.reload(true);
   };
 
-  componentDidMount() {
-    this.getContratoWhitApi();
+  traerLocatario = () => {
+    let id = this.props.contrato.dni_locatario
 
+    this.props.mostrarLocatario(id)
+
+  }
+
+  traerContrato = () => {
+    let id = this.props.match.params.id;
+
+    this.props.mostrarContrato(id)
+
+  }
+
+  traerUnFunc = () => {
+    let id = this.props.contrato.uf_tiponum
+
+    this.props.mostrarUnidadFuncional(id);
+  }
+
+  traerLocador = () => {
+    let id = this.props.unidadFuncional.titular;
+
+    this.props.mostrarLocador(id)
+  }
+
+
+  componentDidMount() {
     setTimeout(() => {
-      this.getLocadorWhitApi();
+
+      this.traerContrato();
     }, 200);
 
     setTimeout(() => {
-      this.getLocatarioWhitApi();
+
+      this.traerLocatario();
+
     }, 300);
 
     setTimeout(() => {
-      this.getUFWhitApi();
+
+      this.traerUnFunc();
+
     }, 400);
+
+
+    // setTimeout(() => {
+
+    //   this.traerLocador();
+
+    // }, 500);
+
+    setTimeout(() => {
+
+      this.setState({
+        contrato: this.props.contrato,
+        locatario: this.props.locatario,
+        unidadFuncional: this.props.unidadFuncional
+      })
+
+    }, 600);
+
+    setTimeout(() => {
+
+      console.log(this.state);
+
+    }, 700);
   }
 
+
+
+
   render() {
+
+
     let month = new Array();
     month[0] = "Enero";
     month[1] = "Febrero";
@@ -114,6 +132,7 @@ export default class Contrato extends Component {
     month[10] = "Noviembre";
     month[11] = "Diciembre";
 
+
     let newDate = new Date();
     let date = newDate.getDate();
     let monthnumber = newDate.getMonth();
@@ -127,7 +146,7 @@ export default class Contrato extends Component {
 
     return (
       <div className="container">
-        <div id="contrato">
+        {/* <div id="contrato">
           <h2 className="text-center mt-4">
             <strong>CONTRATO DE LOCACION</strong>
           </h2>
@@ -149,16 +168,16 @@ export default class Contrato extends Component {
             con domicilio en <strong>{locatario.domicilio}</strong> - B°
             <strong>{locatario.barrio}</strong> –
             <strong>{locatario.localidad}</strong>, –Provincia de Jujuy- en
-            adelante el “LOCATARIO”, se conviene en celebrar el presente
-            Contrato de Locación Comercial, el que se regirá conforme a las
-            siguientes cláusulas:
+          adelante el “LOCATARIO”, se conviene en celebrar el presente
+          Contrato de Locación Comercial, el que se regirá conforme a las
+          siguientes cláusulas:
           </p>
 
           <p className="text-justify">
             <u>PRIMERA:</u> El locador da en arriendo a los locatarios y estos
             aceptan, la unidad funcional n° <strong>{uf.uf_tiponum}</strong>,
             identificada del <strong>{uf.dir_plan}</strong>, que se disgregan
-            del edificio situado en OTERO Nº 464 de esta ciudad, fijándose como
+          del edificio situado en OTERO Nº 464 de esta ciudad, fijándose como
             fecha de iniciación de este contrato el día{" "}
             <strong>{`${date}/${monthnumber}/${year}`}</strong>, fecha a la cual
             retrotraen los efectos de este contrato. Todos los montos que se
@@ -199,51 +218,51 @@ export default class Contrato extends Component {
             <u>TERCERA:</u> El Locatario se compromete a abonar por la unidad
             funcional que arriendan la suma de DOS MIL (
             <strong>${contrato.pagos_contrato}</strong>) mensuales, pagaderos
-            por mes adelantado del 1 al 10 de cada mes, en calle LAVALLE Nº 123
-            de esta ciudad o donde el locador indique, además y como formando
-            parte de la locacion los locatarios abonaran al Locador en el mismo
-            termino, las expensas comunes por, limsa, impuestos inmobiliario,
-            luz, agua, gas, que forman parte de dicha expensas, Internet y todo
-            cuando otro gasto común que se realice para el buen funcionamiento y
-            aseo de las unidades funcionales de los pisos del edificio. Los
-            locatarios se comprometen y obligan a cumplir como así también
-            respetar el reglamento de copropiedad y administración al que
-            declaran conocer y aceptar. La mora es automática, opera de pleno
-            derecho por el mero vencimiento, sin necesidad de interpelación
-            judicial o extrajudicial alguna; y toda deuda atrasada devengará una
-            mora equivalente al 0,5% diarios, por el período comprendido entre
-            el vencimiento y el efectivo pago.-
+          por mes adelantado del 1 al 10 de cada mes, en calle LAVALLE Nº 123
+          de esta ciudad o donde el locador indique, además y como formando
+          parte de la locacion los locatarios abonaran al Locador en el mismo
+          termino, las expensas comunes por, limsa, impuestos inmobiliario,
+          luz, agua, gas, que forman parte de dicha expensas, Internet y todo
+          cuando otro gasto común que se realice para el buen funcionamiento y
+          aseo de las unidades funcionales de los pisos del edificio. Los
+          locatarios se comprometen y obligan a cumplir como así también
+          respetar el reglamento de copropiedad y administración al que
+          declaran conocer y aceptar. La mora es automática, opera de pleno
+          derecho por el mero vencimiento, sin necesidad de interpelación
+          judicial o extrajudicial alguna; y toda deuda atrasada devengará una
+          mora equivalente al 0,5% diarios, por el período comprendido entre
+          el vencimiento y el efectivo pago.-
           </p>
           <p className="text-justify">
             <u>CUARTA:</u> siendo intención de las partes mantener el precio del
             alquiler de modo que conserve su valor adquisitivo, convienen que el
             monto del alquiler pactado será de pesos DOS MIL (
             <strong>${contrato.pagos_contrato}</strong>) mensuales hasta el mes
-            6 (seis); desde el mes 7 (siete) hasta el mes 12 (doce) el alquiler
-            pactado será de pesos DOS MIL DOSCIENTOS (
+          6 (seis); desde el mes 7 (siete) hasta el mes 12 (doce) el alquiler
+          pactado será de pesos DOS MIL DOSCIENTOS (
             <strong>${contrato.pagos_contrato + 200}</strong>) desde el mes 13
-            (trece) hasta el mes 18 (dieciocho) el alquiler pactado será de
-            pesos DOS MIL CUATROCIENTOS VEINTE (
+          (trece) hasta el mes 18 (dieciocho) el alquiler pactado será de
+          pesos DOS MIL CUATROCIENTOS VEINTE (
             <strong>${contrato.pagos_contrato + 420}</strong>) desde el mes 19
-            (diecinueve) hasta el mes 24 (veinticuatro) el alquiler pactado será
-            de pesos DOS MIL SEISCIENTOS SECENTA (
+          (diecinueve) hasta el mes 24 (veinticuatro) el alquiler pactado será
+          de pesos DOS MIL SEISCIENTOS SECENTA (
             <strong>${contrato.pagos_contrato + 660}</strong>). Como complemento
-            a lo mencionado con anterioridad en la presente cláusula se
-            establece que por la situación de emergencia e incertidumbre que
-            reina en el país sobre los pecios de las locaciones y sobre la
-            evolución de los precios en general.- es por ello que si el precio
-            fijado se tornara excesivamente oneroso para el locatario, podrán
-            rescindir el contrato sin penalidad alguna. si lo fuera para el
-            locador, el contrato quedara resuelto de pleno derecho y el
-            locatario deberá desalojar el inmueble, en un plazo de 72 hrs.
-            hábiles. el locador podrá evitar la rescisión del contrato,
-            realizando un ofrecimiento de reajuste equitativo del precio,
-            mediante un medio fehaciente de comunicación. el plazo de espera del
-            mencionado ofrecimiento será de 10 días hábiles desde el pedido
-            expreso de reajuste por parte del locador. el precio equitativo
-            ofrecido por el locatario no podrá ser menor al precio que determine
-            la cámara inmobiliaria de jujuy en base al reajuste fijado sobre el
-            precio de la locacion.
+          a lo mencionado con anterioridad en la presente cláusula se
+          establece que por la situación de emergencia e incertidumbre que
+          reina en el país sobre los pecios de las locaciones y sobre la
+          evolución de los precios en general.- es por ello que si el precio
+          fijado se tornara excesivamente oneroso para el locatario, podrán
+          rescindir el contrato sin penalidad alguna. si lo fuera para el
+          locador, el contrato quedara resuelto de pleno derecho y el
+          locatario deberá desalojar el inmueble, en un plazo de 72 hrs.
+          hábiles. el locador podrá evitar la rescisión del contrato,
+          realizando un ofrecimiento de reajuste equitativo del precio,
+          mediante un medio fehaciente de comunicación. el plazo de espera del
+          mencionado ofrecimiento será de 10 días hábiles desde el pedido
+          expreso de reajuste por parte del locador. el precio equitativo
+          ofrecido por el locatario no podrá ser menor al precio que determine
+          la cámara inmobiliaria de jujuy en base al reajuste fijado sobre el
+          precio de la locacion.
           </p>
           <p className="text-justify">
             <u>QUINTA:</u> El locatario recibe la unidad funcional identificada{" "}
@@ -334,7 +353,7 @@ export default class Contrato extends Component {
             En prueba de conformidad y para su fiel cumplimiento, se firman dos
             ejemplares de un mismo tenor e igual efecto en la ciudad de san
             salvador de Jujuy a los a los <strong>{date}</strong> días del mes
-            de
+          de
             <strong> {monthname}</strong> de <strong>{year}</strong>.-
           </p>
         </div>
@@ -371,18 +390,18 @@ export default class Contrato extends Component {
             con domicilio en <strong>{locatario.domicilio}</strong> - B°
             <strong>{locatario.barrio}</strong> –
             <strong>{locatario.localidad}</strong>, –Provincia de Jujuy-, en
-            adelante los “LOCATARIOS”, convienen en celebrar el
-            presente CONTRADOCUMENTO en relación al Contrato de Locación
+          adelante los “LOCATARIOS”, convienen en celebrar el
+          presente CONTRADOCUMENTO en relación al Contrato de Locación
             celebrado entre las partes en fecha <strong>{date}</strong> de
             <strong> {monthname}</strong> de <strong>{year}</strong> respecto la
             unidad funcional n° <strong>{uf.uf_tiponum}</strong>, identificada
             del <strong>{uf.dir_plan}</strong>, que se disgregan del edificio
-            situado en OTERO Nº 464 de esta ciudad.
+          situado en OTERO Nº 464 de esta ciudad.
           </p>
 
           <p className="text-justify mt-4">
             A tal evento, las partes manifiestan que a solicitud de los
-             LOCATARIOS se han consignado en el referido instrumento un valor
+             LOCATARIOS se han consignado en el referido instrumento un valor
             locativo referencial cuando el precio real de la locación celebrada
             entre las partes se ajusta a los siguientes valores locativos que
             serán abonada de la siguiente manera en forma mensual y por mes
@@ -423,8 +442,20 @@ export default class Contrato extends Component {
           onClick={this.imprimirCD}
         >
           Imprimir Contra Documento
-        </button>
+        </button> */}
       </div>
     );
   }
 }
+//state
+const mapStateToProps = state => ({
+  unidadFuncional: state.unidadesFuncionales.unidadFuncional,
+  contrato: state.contratos.contrato,
+  locatario: state.locatarios.locatario
+
+});
+
+export default connect(
+  mapStateToProps,
+  { mostrarContrato, mostrarLocatario, mostrarUnidadFuncional, mostrarLocador }
+)(Contrato);

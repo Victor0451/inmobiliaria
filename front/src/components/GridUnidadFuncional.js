@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 export default class UnidadFuncional extends Component {
   render() {
+    const { unidadesFuncionales } = this.props
     return (
       <div className="form-style-8">
         <h2> Unidades Funcionales </h2>
@@ -12,6 +13,7 @@ export default class UnidadFuncional extends Component {
           <table className="fl-table">
             <thead>
               <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Padron</th>
                 <th scope="col">Poligono</th>
                 <th scope="col">Medidor</th>
@@ -19,51 +21,62 @@ export default class UnidadFuncional extends Component {
                 <th scope="col">Direccion (boleta)</th>
                 <th scope="col">Unidad Funcional</th>
                 <th scope="col">Numero de Unidad Funcional</th>
+                <th scope="col">Titular</th>
+                <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
-           
+
               </tr>
             </thead>
             <tbody>
-            {this.props.unfucselect.map((item, index) => {
-                            return (
+              {unidadesFuncionales.map((item) => {
+                return (
 
-                                <tr key={index}>
+                  <tr key={item.id_uf}>
 
-                                    <td className="toggler">
-                                        {item.padron}
-                                    </td>
-                                    <td>
-                                        {item.poligono}
-                                    </td>
-                                    <td>
-                                        {item.medidor}
-                                    </td>
-                                    <td>
-                                        {item.dir_plan}
-                                    </td>
-                                    <td>
-                                        {item.dir_boleta}
-                                    </td>
-                                    <td>
-                                        {item.uf_tipo}
-                                    </td>
-                                    <td>
-                                        {item.uf_tiponum}
-                                    </td>
-                                   
-                                    <td>
+                    <td className="toggler">
+                      {item.id_uf}
+                    </td>
+                    <td className="toggler">
+                      {item.padron}
+                    </td>
+                    <td>
+                      {item.poligono}
+                    </td>
+                    <td>
+                      {item.medidor}
+                    </td>
+                    <td>
+                      {item.dir_plan}
+                    </td>
+                    <td>
+                      {item.dir_boleta}
+                    </td>
+                    <td>
+                      {item.uf_tipo}
+                    </td>
+                    <td>
+                      {item.uf_tiponum}
+                    </td>
+                    <td>
+                      {item.titular}
+                    </td>
+                    <td className="toggler">
+                      {item.estado}
+                    </td>
 
-                                        <Link to={"/crearcontrato/" + item.uf_tiponum} className="btn btn-primary btn-block" >Selecionar</Link>
-                                       
-                                    </td>
+                    <td>
 
-                                </tr>
+                      <Link to={"/crearcontrato/" + item.uf_tiponum} className="btn btn-primary btn-block" >Selecionar</Link>
+
+                    </td>
+
+                  </tr>
 
 
 
-                            );
+                );
 
-                        })}
+              })}
 
             </tbody>
           </table>

@@ -1,11 +1,13 @@
 import React from "react";
 
 export default function FormLocatarioContrato(props) {
+  const { leerDatos, unidadFuncional, id_contrato, crearLocatarioContrato, crearLocatarioContrato2 } = props
+
   return (
     <div>
       <form
         className="form-style-8"
-        onSubmit={props.crearLocatarioContrato}
+        onSubmit={crearLocatarioContrato}
         id="form"
       >
         <h2>Datos del locatario</h2>
@@ -17,9 +19,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="dni"
                 placeholder="DNI"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">DNI</label>
+              <label>DNI</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -28,35 +31,38 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="cuit"
                 placeholder="Cuit/Cuil"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Cuit/Cuil</label>
+              <label >Cuit/Cuil</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="uftipo"
+                name="uf_tipo"
                 placeholder="Unidad Funcional"
-                value={props.uf.uf_tipo}
+                value={unidadFuncional.uf_tipo}
+                onChange={leerDatos}
                 readOnly
                 required
               />
-              <label for="in-range-input">Unidad Funcional</label>
+              <label >Unidad Funcional</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="ufnum"
+                name="uf_tiponum"
                 placeholder="Unidad Funcional"
-                value={props.uf.uf_tiponum}
+                value={unidadFuncional.uf_tiponum}
                 readOnly
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Numero de Unidad Funcional</label>
+              <label >Numero de Unidad Funcional</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -65,9 +71,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="pagos_contrato"
                 placeholder="Pagos por Contrato"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Pagos por Contrato</label>
+              <label >Pagos por Contrato</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -76,9 +83,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="pagos_pagare"
                 placeholder="Pagos con Pagare"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Pagos con Pagare</label>
+              <label >Pagos con Pagare</label>
             </p>
           </div>
 
@@ -89,9 +97,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="apellido"
                 placeholder="Apellido"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Apellido</label>
+              <label >Apellido</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -100,9 +109,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="nombre"
                 placeholder="Nombre"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Nombre</label>
+              <label >Nombre</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -111,9 +121,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="domicilio"
                 placeholder="Domicilio"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Domicilio</label>
+              <label >Domicilio</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -122,9 +133,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="barrio"
                 placeholder="Barrio"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Barrio</label>
+              <label >Barrio</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -133,9 +145,10 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="localidad"
                 placeholder="Localidad"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Localidad</label>
+              <label >Localidad</label>
             </p>
           </div>
         </div>
@@ -149,9 +162,10 @@ export default function FormLocatarioContrato(props) {
 
       <form
         className="form-style-8"
-        onSubmit={props.crearLocatario2}
+        onSubmit={crearLocatarioContrato2}
         id="form2"
         hidden={true}
+
       >
         <h2>Datos del segundo locatario</h2>
         <div className="row">
@@ -162,46 +176,50 @@ export default function FormLocatarioContrato(props) {
                 className=""
                 name="dni2"
                 placeholder="DNI"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">DNI</label>
+              <label >DNI</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="number"
                 className=""
-                name="cuit2"
+                name="cuit"
                 placeholder="Cuit/Cuil"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Cuit/Cuil</label>
+              <label >Cuit/Cuil</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="uftipo2"
-                value={props.uf.uf_tipo}
+                name="uftipo"
+                value={unidadFuncional.uf_tipo}
                 readOnly
                 placeholder="Unidad Funcional"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Unidad Funcional</label>
+              <label >Unidad Funcional</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="ufnum2"
-                value={props.uf.uf_tiponum}
+                name="ufnum"
+                value={unidadFuncional.uf_tiponum}
                 readOnly
                 placeholder="Unidad Funcional"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Nombre Unidad Funcional</label>
+              <label >Nombre Unidad Funcional</label>
             </p>
 
             <p className="has-dynamic-label">
@@ -209,12 +227,13 @@ export default function FormLocatarioContrato(props) {
                 type="text"
                 className=""
                 name="contrato"
-                value={props.contrato.id_contrato}
+                value={id_contrato}
                 readOnly
                 placeholder="Numero de Contrato"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Numero de Contrato</label>
+              <label >Numero de Contrato</label>
             </p>
           </div>
 
@@ -223,55 +242,60 @@ export default function FormLocatarioContrato(props) {
               <input
                 type="text"
                 className=""
-                name="apellido2"
+                name="apellido"
                 placeholder="Apellido"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Apellido</label>
+              <label >Apellido</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="nombre2"
+                name="nombre"
                 placeholder="Nombre"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Nombre</label>
+              <label >Nombre</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="domicilio2"
+                name="domicilio"
                 placeholder="Domicilio"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Domicilio</label>
+              <label >Domicilio</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="barrio2"
+                name="barrio"
                 placeholder="Barrio"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Barrio</label>
+              <label >Barrio</label>
             </p>
 
             <p className="has-dynamic-label">
               <input
                 type="text"
                 className=""
-                name="localidad2"
+                name="localidad"
                 placeholder="Localidad"
+                onChange={leerDatos}
                 required
               />
-              <label for="in-range-input">Localidad</label>
+              <label >Localidad</label>
             </p>
           </div>
         </div>

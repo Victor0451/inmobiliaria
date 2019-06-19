@@ -2,45 +2,36 @@ import React, { Component } from "react";
 import toastr from "../utils/toastr";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
-import { postLocatario, getUFSel, postContrato } from "../functions/apis";
+
 import FormLocatarioContrato from "./FormLocatarioContrato";
 
-export default class LocatarioContrato extends Component {
+//redux
+import { connect } from "react-redux";
+import { mostrarUnidadFuncional } from "../actions/unidadFuncionalActions";
+import { agregarLocatarioContrato } from '../actions/locatarioActions';
+import { agregarContrato } from '../actions/contratosActions';
+
+class LocatarioContrato extends Component {
   state = {
-    uf: {},
+    unidadFuncional: {},
+    dni: '',
+    cuit: '',
+    nombre: '',
+    apellido: '',
+    domicilio: '',
+    barrio: '',
+    localidad: '',
+    dni2: '',
+    pagos_contrato: '',
+    pagos_pagare: '',
+    id_contrato: ''
 
-    locatario1: {
-      nombre: "",
-      apellido: "",
-      dni: "",
-      cuit: "",
-      ufnum: "",
-      uftipo: "",
-      domicilio: "",
-      barrio: "",
-      localidad: "",
-      loc_tipo: ""
-    },
-
-    locatario2: {
-      nombre2: "",
-      apellido2: "",
-      dni2: "",
-      cuit2: "",
-      ufnum2: "",
-      uftipo2: "",
-      domicilio2: "",
-      barrio2: "",
-      localidad2: "",
-      loc_tipo2: ""
-    },
-
-    contrato: {
-      id_contrato: "",
-      pagos_contrato: "",
-      pagos_pagare: ""
-    }
   };
+
+  leerDatos = e => {
+
+    this.setState({ [e.target.name]: e.target.value })
+  }
 
   crearLocatarioContrato = e => {
     e.preventDefault();
@@ -48,54 +39,47 @@ export default class LocatarioContrato extends Component {
     let form = document.getElementById("form");
     let form2 = document.getElementById("form2");
 
+    const { uf_tiponum, titular } = this.state.unidadFuncional;
+
     const {
-      nombre,
-      apellido,
+      pagos_contrato,
+      pagos_pagare,
       dni,
       cuit,
-      ufnum,
-      uftipo,
+      apellido,
+      nombre,
       domicilio,
       barrio,
-      localidad,
+      localidad
+    } = this.state
+
+    let id_contrato = `CONT-${dni}-${uf_tiponum}`;
+    this.setState({ id_contrato: id_contrato })
+
+
+    const contrato = {
+      id_contrato,
+      dni,
       pagos_contrato,
-      pagos_pagare
-    } = e.target.elements;
+      pagos_pagare,
+      uf_tiponum,
+      titular
 
-    let nombrevalue = nombre.value;
-    let apellidovalue = apellido.value;
-    let dnivalue = dni.value;
-    let cuitvalue = cuit.value;
-    let uftipovalue = uftipo.value;
-    let ufnumvalue = ufnum.value;
-    let domiciliovalue = domicilio.value;
-    let barriovalue = barrio.value;
-    let localidadvalue = localidad.value;
-    let pcontratovalue = pagos_contrato.value;
-    let ppagarevalue = pagos_pagare.value;
+    }
 
-    let unfunnum = this.state.uf.uf_tiponum;
-    let idcontrato = `CONT-${dnivalue}-${unfunnum}`;
+    let dnil = dni;
 
-    this.setState({
-      locatario1: {
-        nombre: nombrevalue,
-        apellido: apellidovalue,
-        dni: dnivalue,
-        cuit: cuitvalue,
-        uftipo: uftipovalue,
-        ufnum: ufnumvalue,
-        domicilio: domiciliovalue,
-        barrio: barriovalue,
-        localidad: localidadvalue,
-        loc_tipo: 1
-      },
-      contrato: {
-        id_contrato: idcontrato,
-        pagos_contrato: pcontratovalue,
-        pagos_pagare: ppagarevalue
-      }
-    });
+    const locatario = {
+      dnil,
+      cuit,
+      apellido,
+      nombre,
+      domicilio,
+      barrio,
+      localidad
+    }
+
+
 
     confirmAlert({
       title: "Atencion",
@@ -104,17 +88,12 @@ export default class LocatarioContrato extends Component {
         {
           label: "Si",
           onClick: () => {
-            form2.hidden = false;
 
-            postLocatario(
-              nombrevalue,
-              apellidovalue,
-              dnivalue,
-              cuitvalue,
-              domiciliovalue,
-              barriovalue,
-              localidadvalue
-            );
+            this.props.agregarLocatarioContrato(locatario);
+
+            console.log(locatario)
+
+            form2.hidden = false;
 
             toastr.info(
               "Primer locatario a sido guardado, ahora carga al segundo",
@@ -128,30 +107,11 @@ export default class LocatarioContrato extends Component {
           onClick: () => {
             form.hidden = true;
 
-            let dniloc = dnivalue;
-            let dniloc2 = 0;
-            let dnilocador = this.state.uf.titular;
+            this.props.agregarLocatarioContrato(locatario);
 
-            postLocatario(
-              nombrevalue,
-              apellidovalue,
-              dnivalue,
-              cuitvalue,
-              domiciliovalue,
-              barriovalue,
-              localidadvalue
-            );
-            postContrato(
-              idcontrato,
-              dniloc,
-              dniloc2,
-              ufnumvalue,
-              dnilocador,
-              pcontratovalue,
-              ppagarevalue
-            );
+            this.props.agregarContrato(contrato);
 
-            this.props.history.push(`/contrato/${idcontrato}`);
+            this.props.history.push(`/contrato/${id_contrato}`);
 
             toastr.success("El locatario a sido cargado", "ATENCION");
           }
@@ -160,104 +120,100 @@ export default class LocatarioContrato extends Component {
     });
   };
 
-  crearLocatario2 = e => {
+  crearLocatarioContrato2 = e => {
+
     e.preventDefault();
 
-    let form = document.getElementById("form");
-    let form2 = document.getElementById("form2");
-
     const {
-      nombre2,
-      apellido2,
+      pagos_contrato,
+      pagos_pagare,
+      dni,
       dni2,
-      cuit2,
-      ufnum2,
-      uftipo2,
-      domicilio2,
-      barrio2,
-      localidad2,
-      contrato
-    } = e.target.elements;
+      cuit,
+      apellido,
+      nombre,
+      domicilio,
+      barrio,
+      localidad,
+      id_contrato
+    } = this.state
 
-    let nombrevalue = nombre2.value;
-    let apellidovalue = apellido2.value;
-    let dnivalue = dni2.value;
-    let cuitvalue = cuit2.value;
-    let uftipovalue = uftipo2.value;
-    let ufnumvalue = ufnum2.value;
-    let domiciliovalue = domicilio2.value;
-    let barriovalue = barrio2.value;
-    let localidadvalue = localidad2.value;
-    let idcontrato = this.state.contrato.id_contrato;
+    const { uf_tiponum, titular } = this.state.unidadFuncional;
 
-    this.setState({
-      locatario2: {
-        nombre2: nombrevalue,
-        apellido2: apellidovalue,
-        dni2: dnivalue,
-        cuit2: cuitvalue,
-        uftipo2: uftipovalue,
-        ufnum2: ufnumvalue,
-        domicilio2: domiciliovalue,
-        barrio2: barriovalue,
-        localidad2: localidadvalue,
-        loc_tipo2: 2
-      }
-    });
+    let dnil = dni2;
 
-    postLocatario(
-      nombrevalue,
-      apellidovalue,
-      dnivalue,
-      cuitvalue,
-      domiciliovalue,
-      barriovalue,
-      localidadvalue
-    );
+    const locatario = {
+      dnil,
+      cuit,
+      apellido,
+      nombre,
+      domicilio,
+      barrio,
+      localidad,
+    }
 
-    let dniloc = this.state.locatario1.dni;
-    let dniloc2 = dnivalue;
-    let dnilocador = this.state.uf.titular;
-    let pcontratovalue = this.state.contrato.pagos_contrato;
-    let ppagarevalue = this.state.contrato.pagos_pagare;
+    const contrato = {
+      id_contrato,
+      dni,
+      dni2,
+      pagos_contrato,
+      pagos_pagare,
+      uf_tiponum,
+      titular
 
-    postContrato(
-      idcontrato,
-      dniloc,
-      dniloc2,
-      ufnumvalue,
-      dnilocador,
-      pcontratovalue,
-      ppagarevalue
-    );
+    }
 
-    form2.hidden = true;
-    form.hidden = true;
+    console.log(locatario)
 
-    this.props.history.push(`/contrato2loc/${idcontrato}`);
-  };
+    this.props.agregarLocatarioContrato(locatario);
+
+    this.props.agregarContrato(contrato);
+
+    this.props.history.push(`/contrato2loc/${id_contrato}`);
+
+  }
+
+
 
   componentDidMount() {
     let id = this.props.match.params.id;
-    getUFSel(id)
-      .then(uf => {
-        this.setState({
-          uf: uf.data
-        });
-      })
-      .catch(err => console.log(err));
+    this.props.mostrarUnidadFuncional(id);
+
+  }
+
+  componentWillReceiveProps(nextProps, nextState) {
+    const { unidadFuncional } = nextProps;
+
+    this.setState({
+      unidadFuncional: unidadFuncional,
+    });
+
   }
 
   render() {
+
     return (
       <div className="">
         <FormLocatarioContrato
+          leerDatos={this.leerDatos}
+          unidadFuncional={this.state.unidadFuncional}
+          id_contrato={this.state.id_contrato}
           crearLocatarioContrato={this.crearLocatarioContrato}
-          crearLocatario2={this.crearLocatario2}
-          uf={this.state.uf}
-          contrato={this.state.contrato}
+          crearLocatarioContrato2={this.crearLocatarioContrato2}
+
         />
       </div>
     );
   }
 }
+
+//state
+const mapStateToProps = state => ({
+  unidadFuncional: state.unidadesFuncionales.unidadFuncional
+
+});
+
+export default connect(
+  mapStateToProps,
+  { mostrarUnidadFuncional, agregarLocatarioContrato, agregarContrato }
+)(LocatarioContrato);

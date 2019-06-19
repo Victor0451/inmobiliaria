@@ -23,10 +23,10 @@ router.get("/getcontratoselect/:id", (req, res, next) => {
 router.post("/postcontrato", (req, res) => {
   const data = {
     id_contrato: req.body.id_contrato,
-    dni_locatario: req.body.dni_locatario,
-    dni_locatario2: req.body.dni_locatario2,
+    dni_locatario: req.body.dni,
+    dni_locatario2: req.body.dni2,
     uf_tiponum: req.body.uf_tiponum,
-    locador: req.body.locador,
+    locador: req.body.titular,
     pagos_contrato: req.body.pagos_contrato,
     pagos_pagare: req.body.pagos_pagare
   };

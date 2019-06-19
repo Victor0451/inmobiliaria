@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormLocatario from "./FormLocatario";
-import { postLocatario } from "../functions/apis";
+
 
 export default class Locatario extends Component {
   state = {
@@ -48,15 +48,7 @@ export default class Locatario extends Component {
       }
     });
 
-    postLocatario(
-      nombrevalue,
-      apellidovalue,
-      dnivalue,
-      cuitvalue,  
-      domiciliovalue,
-      barriovalue,
-      localidadvalue
-    );
+   
   };
 
   render() {

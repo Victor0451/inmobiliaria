@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -20,87 +21,77 @@ export default function Header() {
         </button>
         <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div className="navbar-nav">
-            <a className="nav-item nav-link active" href="/">
-              Home <span className="sr-only">(current)</span>
-            </a>
+            <Link to="/" className="nav-item nav-link active">Home</Link>
+
             <li className="nav-item dropdown">
-              <a
+
+              <Link
+                to="#"
                 className="nav-link active dropdown-toggle"
-                href="#"
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >
-                Locador
-              </a>
+              >Locador
+             </Link>
+
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/crearlocador">
-                  Ingresar Locador
-                </a>
+                <Link to="/crearlocador" className="dropdown-item">Igresar Locador</Link>
+
                 <div className="dropdown-divider" />
               </div>
             </li>
 
             <li className="nav-item dropdown">
-              <a
+              <Link
+                to="#"
                 className="nav-link active dropdown-toggle"
-                href="#"               
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >
-                Locatario
-              </a>
-             
+              >Locatario
+             </Link>
+
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/crearlocatario">
-                  Ingresar Locatario
-                </a>
+                <Link to="/crearlocatario" className="dropdown-item">Igresar Locatario</Link>
                 <div className="dropdown-divider" />
               </div>
             </li>
 
             <li className="nav-item dropdown">
-              <a
+              <Link
+                to="#"
                 className="nav-link active dropdown-toggle"
-                href="#"
-               
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >
-                Unidad Funcional
-              </a>
+              >Unidad Funcional
+             </Link>
+
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/crearunidadfuncional">
-                  Ingresar Unidad Funcional
-                </a>
+                <Link to="/crearunidadfuncional" className="dropdown-item">Igresar Unidad Funcional</Link>
                 <div className="dropdown-divider" />
               </div>
             </li>
             <li className="nav-item dropdown">
-              <a
+              <Link
+                to="#"
                 className="nav-link active dropdown-toggle"
-                href="#"
-               
                 id="navbarDropdown"
                 role="button"
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-              >
-               Contratos
-              </a>
+              >Contratos
+             </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a className="dropdown-item" href="/crearcontrato">
-                  Crear Contrato
-                </a>
+                <Link to="/crearcontrato" className="dropdown-item">Igresar Contrato</Link>
+
                 <div className="dropdown-divider" />
               </div>
             </li>

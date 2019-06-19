@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormLocador from "./FormLocador";
-import { postLocador } from "../functions/apis";
+
 
 export default class Locador extends Component {
   state = {
@@ -48,15 +48,7 @@ export default class Locador extends Component {
       }
     });
 
-    postLocador(
-      dnivalue,
-      apellidovalue,
-      nombrevalue,
-      domiciliovalue,
-      barriovalue,
-      localidadvalue,
-      provinciavalue
-    );
+   
 
     e.target.reset();
   };

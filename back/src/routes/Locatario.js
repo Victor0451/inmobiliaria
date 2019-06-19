@@ -18,37 +18,6 @@ router.get("/getlocatarioselect/:id", (req, res, next) => {
   );
 });
 
-//GET LOCATARIO2 BY ID WHERE uf_tiponum = id
-
-router.get("/getlocatario2select/:id", (req, res, next) => {
-  mysqlConnection.query(
-    "SELECT * FROM locatario WHERE id_contrato = ? and loc_tipo = 2",
-    [req.params.id],
-    (err, rows, fields) => {
-      if (!err) {
-        res.json(rows[0]);
-      } else {
-        console.log(err);
-      }
-    }
-  );
-});
-
-//GET ID_CONTRATO BY DNI
-
-router.get("/getidcont/:id", (req, res, next) => {
-  mysqlConnection.query(
-    "SELECT id_contrato FROM locatario WHERE dni = ?",
-    [req.params.id],
-    (err, rows, fields) => {
-      if (!err) {
-        res.json(rows[0]);
-      } else {
-        console.log(err);
-      }
-    }
-  );
-});
 
 //INSERT FOR CONTRATO
 
@@ -58,13 +27,13 @@ router.post("/postlocatariocontrato", (req, res) => {
   const data = {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
-    dni: req.body.dni,
-    cuit: req.body.cuit,   
+    dni: req.body.dnil,
+    cuit: req.body.cuit,
     domicilio: req.body.domicilio,
     barrio: req.body.barrio,
-    localidad: req.body.localidad,
-    id_contrato: req.body.idcontrato
-    
+    localidad: req.body.localidad
+
+
   };
 
   const sql = "INSERT INTO locatario SET ?";
@@ -72,12 +41,14 @@ router.post("/postlocatariocontrato", (req, res) => {
     if (!err) {
       console.log("Insert successfully");
       res.send('Insert successfully')
-         } else {
+    } else {
       console.log(err);
       res.send(err)
     }
   });
 });
+
+
 
 //INSERT ALONE
 
@@ -88,10 +59,10 @@ router.post("/postlocatario", (req, res) => {
     nombre: req.body.nombre,
     apellido: req.body.apellido,
     dni: req.body.dni,
-    cuit: req.body.cuit,  
+    cuit: req.body.cuit,
     domicilio: req.body.domicilio,
     barrio: req.body.barrio,
-    localidad: req.body.localidad   
+    localidad: req.body.localidad
   };
 
   const sql = "INSERT INTO locatario SET ?";
@@ -99,7 +70,7 @@ router.post("/postlocatario", (req, res) => {
     if (!err) {
       console.log("Insert successfully");
       res.send('Insert successfully')
-         } else {
+    } else {
       console.log(err);
       res.send(err)
     }

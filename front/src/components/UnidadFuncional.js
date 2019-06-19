@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import FormUnidadFuncional from "./FormUnidadFuncional";
-import { postUnidadFuncional, getUFSel } from "../functions/apis";
+
 
 export default class UnidadFuncional extends Component {
   state = {
@@ -52,16 +52,7 @@ export default class UnidadFuncional extends Component {
       }
     });
 
-    postUnidadFuncional(
-      padronvalue,
-      poligonovalue,
-      medidorvalue,
-      dir_planvalue,
-      dir_boletavalue,
-      uf_tipovalue,
-      uf_tiponumvalue,
-      titularvalue
-    );
+
 
     //toastr.succes("Locador ingresado con exito!", "ATENCION");
   };

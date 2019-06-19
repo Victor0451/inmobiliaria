@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-  getLocatarioSel,
-  getUFSel,
-  getLocadorSel,
-  getContratoSel
-} from "../functions/apis";
+
 
 export default class Contrato2Locat extends Component {
   state = {
@@ -15,59 +10,7 @@ export default class Contrato2Locat extends Component {
     locador: {}
   };
 
-  getContratoWhitApi = () => {
-    let id = this.props.match.params.id;
-    getContratoSel(id)
-      .then(contrato => {
-        this.setState({
-          contrato: contrato.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  getLocatarioWhitApi = () => {
-    let id = this.state.contrato.dni_locatario;
-    getLocatarioSel(id)
-      .then(locatario1 => {
-        this.setState({
-          locatario1: locatario1.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  getLocatario2WhitApi = () => {
-    let id = this.state.contrato.dni_locatario2;
-    getLocatarioSel(id)
-      .then(locatario2 => {
-        this.setState({
-          locatario2: locatario2.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-
-  getUFWhitApi = () => {
-    let id = this.state.contrato.uf_tiponum;
-    getUFSel(id)
-      .then(uf => {
-        this.setState({
-          uf: uf.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
-  getLocadorWhitApi = () => {
-    let id = this.state.contrato.locador;
-    getLocadorSel(id)
-      .then(locador => {
-        this.setState({
-          locador: locador.data
-        });
-      })
-      .catch(err => console.log(err));
-  };
+  
 
   imprimir = () => {
     let contenido = document.getElementById("contrato").innerHTML;

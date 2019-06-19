@@ -6,7 +6,7 @@ const mysqlConnection = require("../db/database");
 //GET ALL
 
 router.get("/getunidadfunc", (req, res, next) => {
-  mysqlConnection.query("SELECT * FROM u_funcional", (err, rows, fields) => {
+  mysqlConnection.query("SELECT * FROM u_funcional where id_uf < 46", (err, rows, fields) => {
     if (!err) {
       res.json(rows);
     } else {
@@ -69,7 +69,7 @@ router.post("/postunidadfuncional", (req, res) => {
     if (!err) {
       console.log("Insert successfully");
       res.send('Insert successfully')
-         } else {
+    } else {
       console.log(err);
       res.send(err)
     }

@@ -1,29 +1,26 @@
 import React, { Component } from "react";
 import GridUnidadFuncional from "./GridUnidadFuncional";
-import { getUFByTitular } from "../functions/apis";
 
-export default class Form extends Component {
-  state = {
-    unfucselect: []
-  };
+
+//redux
+import { connect } from "react-redux";
+import { mostrarUnidadesFuncionalesTitular, mostrarUnidadesFuncionales } from "../actions/unidadFuncionalActions";
+
+class Form extends Component {
 
   selectvalue = () => {
-    let doc = document.getElementById("locador");
-    let docval = doc.value;
+    const id = document.getElementById("locador").value;
+    this.props.mostrarUnidadesFuncionalesTitular(id);
 
-    getUFByTitular(docval)
-      .then(unfucselect => {
-        this.setState({
-          unfucselect: unfucselect.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-
-    console.log(this.state.unfucselect);
   };
+
+  componentDidMount() {
+    this.props.mostrarUnidadesFuncionales();
+  }
+
   render() {
+    const { unidadesFuncionales } = this.props
+
     return (
       <div>
         <form className="form-style-8">
@@ -41,8 +38,8 @@ export default class Form extends Component {
                     onChange={this.selectvalue.bind(this)}
                   >
                     <option value="">Locador</option>
-                    <option value="111">Juaquin</option>
-                    <option value="24399134">Amelia</option>
+                    <option value="25444609">Iriarte Joaquin</option>
+                    <option value="24399134">Busignani Amelia</option>
                   </select>
                 </p>
               </div>
@@ -55,10 +52,10 @@ export default class Form extends Component {
               <div className="form-group ">
                 <p className="has-dynamic-label">
                   <select id="uf" className="" name="uf" required>
-                    <option value="">Tipo de UF</option>
-                    <option value="">Oficina</option>
-                    <option value="">Local</option>
-                    <option value="">Departamento</option>
+                    <option value="0">Tipo de UF</option>
+                    <option value="OFICINA">Oficina</option>
+                    <option value="LOCAL">Local</option>
+                    <option value="DEPTO">Departamento</option>
                   </select>
                 </p>
               </div>
@@ -70,9 +67,22 @@ export default class Form extends Component {
         </form>
 
         <div>
-          <GridUnidadFuncional unfucselect={this.state.unfucselect} />
+          <GridUnidadFuncional
+            unidadesFuncionales={unidadesFuncionales}
+          />
         </div>
       </div>
     );
   }
 }
+
+//state
+const mapStateToProps = state => ({
+  unidadesFuncionales: state.unidadesFuncionales.unidadesFuncionales
+
+});
+
+export default connect(
+  mapStateToProps,
+  { mostrarUnidadesFuncionales, mostrarUnidadesFuncionalesTitular }
+)(Form);
