@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GridUnidadFuncional from "./GridUnidadFuncional";
+import GridUnidadFuncional from "./unidadesfuncionales/GridUnidadFuncional";
 
 
 //redux
@@ -66,11 +66,10 @@ class Form extends Component {
           </button>
         </form>
 
-        <div>
-          <GridUnidadFuncional
-            unidadesFuncionales={unidadesFuncionales}
-          />
-        </div>
+        <GridUnidadFuncional
+          unidadesFuncionales={unidadesFuncionales}
+        />
+
       </div>
     );
   }

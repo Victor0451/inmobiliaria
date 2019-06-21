@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import FormUnidadFuncional from "./FormUnidadFuncional";
+import formNuevaUnidadFuncional from "./formNuevaUnidadFuncional";
 
 
-export default class UnidadFuncional extends Component {
+export default class nuevaUnidadFuncional extends Component {
   state = {
     unidadfuncional: {
       padron: "",
@@ -60,7 +60,7 @@ export default class UnidadFuncional extends Component {
   render() {
     return (
       <div>
-        <FormUnidadFuncional crearUnidadFuncional={this.crearUnidadFuncional} />
+        <formNuevaUnidadFuncional crearUnidadFuncional={this.crearUnidadFuncional} />
       </div>
     );
   }

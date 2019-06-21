@@ -1,16 +1,23 @@
 import React, { Component } from "react";
 
+//redux
+import { connect } from "react-redux";
+import { mostrarUnidadFuncional } from "../actions/unidadFuncionalActions";
+import { mostrarLocatario } from '../actions/locatarioActions';
+import { mostrarContrato } from '../actions/contratosActions';
+import { mostrarLocador } from '../actions/locadoresActions';
 
-export default class Contrato2Locat extends Component {
+
+class Contrato2Locat extends Component {
   state = {
-    locatario1: {},
+    locatario: {},
     locatario2: {},
-    uf: {},
+    unidadFuncional: {},
     contrato: {},
     locador: {}
   };
 
-  
+
 
   imprimir = () => {
     let contenido = document.getElementById("contrato").innerHTML;
@@ -26,7 +33,7 @@ export default class Contrato2Locat extends Component {
 
   };
 
-  imprimirCD =() => {
+  imprimirCD = () => {
     let contenido = document.getElementById("contradocumento").innerHTML;
     let contenidoOrg = document.body.innerHTML;
 
@@ -35,34 +42,91 @@ export default class Contrato2Locat extends Component {
     window.print();
 
     document.body.innerHTML = contenidoOrg;
-    
+
     window.location.reload(true);
   };
 
+  traerLocatario = () => {
+    let id = this.props.contrato.dni_locatario
+
+    this.props.mostrarLocatario(id)
+
+  }
+
+  traerLocatario2 = () => {
+    let id = this.props.contrato.dni_locatario2
+
+    this.props.mostrarLocatario(id)
+
+  }
+
+  traerContrato = () => {
+    let id = this.props.match.params.id;
+
+    this.props.mostrarContrato(id)
+
+  }
+
+  traerUnFunc = () => {
+    let id = this.props.contrato.uf_tiponum
+
+    this.props.mostrarUnidadFuncional(id);
+  }
+
+  traerLocador = () => {
+    let id = this.props.unidadFuncional.titular;
+
+    this.props.mostrarLocador(id)
+  }
+
+
   componentDidMount() {
     setTimeout(() => {
-      this.getContratoWhitApi();
-    }, 150);
 
-    setTimeout(() => {
-      this.getLocadorWhitApi();
+      this.traerContrato();
     }, 200);
 
     setTimeout(() => {
-      this.getLocatarioWhitApi();
+
+      this.traerLocatario();
+
     }, 300);
 
     setTimeout(() => {
-      this.getLocatario2WhitApi();
-    }, 350);
+
+      this.traerLocatario2();
+
+    }, 400);
 
     setTimeout(() => {
-      this.getUFWhitApi();
-    }, 400);
+
+      this.traerUnFunc();
+
+    }, 500);
+
+
+    setTimeout(() => {
+
+      this.traerLocador();
+
+    }, 600);
+
+    setTimeout(() => {
+
+      this.setState({
+        contrato: this.props.contrato,
+        locatario: this.props.locatarios.locatarios[0],
+        locatario2: this.props.locatarios.locatarios[1],
+        unidadFuncional: this.props.unidadFuncional,
+        locador: this.props.locadores
+      })
+
+    }, 700);
+
   }
 
   render() {
-    let month = new Array();
+    let month = [];
     month[0] = "Enero";
     month[1] = "Febrero";
     month[2] = "Marzo";
@@ -80,15 +144,15 @@ export default class Contrato2Locat extends Component {
     let date = newDate.getDate();
     let monthnumber = newDate.getMonth();
     let monthname = month[newDate.getMonth()];
-    let sixmonthname = month[newDate.getMonth() + 6];
-    let sevenmonthname = month[newDate.getMonth()];
     let year = newDate.getFullYear();
 
-    let locatario = this.state.locatario1;
+    let locatario = this.state.locatario;
     let locatario2 = this.state.locatario2;
-    let uf = this.state.uf;
+    let uf = this.state.unidadFuncional;
     let locador = this.state.locador;
     let contrato = this.state.contrato;
+
+
 
     return (
       <div className="container">
@@ -410,3 +474,17 @@ export default class Contrato2Locat extends Component {
     );
   }
 }
+
+//state
+const mapStateToProps = state => ({
+  unidadFuncional: state.unidadesFuncionales.unidadFuncional,
+  contrato: state.contratos.contrato,
+  locatarios: state.locatarios,
+  locadores: state.locadores.locador
+
+});
+
+export default connect(
+  mapStateToProps,
+  { mostrarContrato, mostrarLocatario, mostrarUnidadFuncional, mostrarLocador }
+)(Contrato2Locat);

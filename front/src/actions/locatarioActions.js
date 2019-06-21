@@ -1,16 +1,16 @@
 import {
-    AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO
+    AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS
 } from "./types";
 
 import axios from "axios";
 
-// export const mostrarTitulares = () => async dispatch => {
-//     const respuesta = await axios.get("http://192.168.1.102:3002/getlistadotitulares");
-//     dispatch({
-//         type: MOSTRAR_TITULARES,
-//         payload: respuesta.data
-//     });
-// };
+export const mostrarLocatarios = () => async dispatch => {
+    const respuesta = await axios.get("http://192.168.1.108:3002/getlocatarios");
+    dispatch({
+        type: MOSTRAR_LOCATARIOS,
+        payload: respuesta.data
+    });
+};
 
 export const mostrarLocatario = id => async dispatch => {
     const respuesta = await axios.get(`http://192.168.1.108:3002/getlocatarioselect/${id}`);
@@ -20,6 +20,7 @@ export const mostrarLocatario = id => async dispatch => {
         payload: respuesta.data
     });
 };
+
 
 // export const buscarTitular = id => async dispatch => {
 //     const respuesta = await axios.get(`http://192.168.1.102:3002/getdatostitular/${id}`);

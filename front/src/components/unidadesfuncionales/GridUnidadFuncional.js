@@ -13,14 +13,9 @@ export default class UnidadFuncional extends Component {
           <table className="fl-table">
             <thead>
               <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Padron</th>
-                <th scope="col">Poligono</th>
-                <th scope="col">Medidor</th>
-                <th scope="col">Direccion (plan)</th>
-                <th scope="col">Direccion (boleta)</th>
                 <th scope="col">Unidad Funcional</th>
                 <th scope="col">Numero de Unidad Funcional</th>
+                <th scope="col">Direccion (plan)</th>
                 <th scope="col">Titular</th>
                 <th scope="col">Estado</th>
                 <th scope="col">Acciones</th>
@@ -32,30 +27,14 @@ export default class UnidadFuncional extends Component {
                 return (
 
                   <tr key={item.id_uf}>
-
-                    <td className="toggler">
-                      {item.id_uf}
-                    </td>
-                    <td className="toggler">
-                      {item.padron}
-                    </td>
                     <td>
-                      {item.poligono}
-                    </td>
-                    <td>
-                      {item.medidor}
-                    </td>
-                    <td>
-                      {item.dir_plan}
-                    </td>
-                    <td>
-                      {item.dir_boleta}
+                      {item.uf_tiponum}
                     </td>
                     <td>
                       {item.uf_tipo}
                     </td>
                     <td>
-                      {item.uf_tiponum}
+                      {item.dir_plan}
                     </td>
                     <td>
                       {item.titular}
@@ -66,7 +45,9 @@ export default class UnidadFuncional extends Component {
 
                     <td>
 
-                      <Link to={"/crearcontrato/" + item.uf_tiponum} className="btn btn-primary btn-block" >Selecionar</Link>
+                      <Link to={`/crearcontrato/${item.uf_tiponum}`} className="btn btn-primary btn-block" >Selecionar</Link>
+                      <Link to={`/unidadesfuncionales/${item.uf_tiponum}`} className="btn btn-secondary btn-block" >Mas Informacion</Link>
+
 
                     </td>
 

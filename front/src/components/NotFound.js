@@ -1,5 +1,5 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import ErrorDir from '../image/ErrorDir2.jpg'
 
 export default function NotFound() {
@@ -14,6 +14,7 @@ export default function NotFound() {
           margin: "auto",
           position: "relative"
         }}
+        alt="NotFound"
       />
       <center>
         <Link to="/" className="btn btn-primary mt-4">Return to Home Page</Link>

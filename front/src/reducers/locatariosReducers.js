@@ -1,4 +1,4 @@
-import { AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO } from "../actions/types";
+import { AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS } from "../actions/types";
 
 //CADA REDUCER TIENE SU ṔROPIO STATE
 
@@ -8,16 +8,16 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
-        //         case MOSTRAR_UNIDADES_FUNCIONALES:
-        //             return {
-        //                 ...state,
-        //                 unidadesFuncionales: action.payload
-        //             };
+        case MOSTRAR_LOCATARIOS:
+            return {
+                ...state,
+                locatarios: action.payload
+            };
 
         case MOSTRAR_LOCATARIO:
             return {
                 ...state,
-                locatario: action.payload
+                locatarios: [...state.locatarios, action.payload]
             };
 
         //         case MOSTRAR_UNIDAD_FUNCIONAL:

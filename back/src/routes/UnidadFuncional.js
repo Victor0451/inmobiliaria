@@ -6,7 +6,7 @@ const mysqlConnection = require("../db/database");
 //GET ALL
 
 router.get("/getunidadfunc", (req, res, next) => {
-  mysqlConnection.query("SELECT * FROM u_funcional where id_uf < 46", (err, rows, fields) => {
+  mysqlConnection.query("SELECT * FROM u_funcional", (err, rows, fields) => {
     if (!err) {
       res.json(rows);
     } else {

@@ -89,21 +89,22 @@ class Contrato extends Component {
     }, 400);
 
 
-    // setTimeout(() => {
+    setTimeout(() => {
 
-    //   this.traerLocador();
+      this.traerLocador();
 
-    // }, 500);
+    }, 550);
 
     setTimeout(() => {
 
       this.setState({
         contrato: this.props.contrato,
         locatario: this.props.locatario,
-        unidadFuncional: this.props.unidadFuncional
+        unidadFuncional: this.props.unidadFuncional,
+        locador: this.props.locadores
       })
 
-    }, 600);
+    }, 650);
 
     setTimeout(() => {
 
@@ -118,7 +119,7 @@ class Contrato extends Component {
   render() {
 
 
-    let month = new Array();
+    let month = [];
     month[0] = "Enero";
     month[1] = "Febrero";
     month[2] = "Marzo";
@@ -139,14 +140,14 @@ class Contrato extends Component {
     let monthname = month[newDate.getMonth()];
     let year = newDate.getFullYear();
 
-    let locatario = this.state.locatario1;
-    let uf = this.state.uf;
+    let locatario = this.state.locatario;
+    let uf = this.state.unidadFuncional;
     let locador = this.state.locador;
     let contrato = this.state.contrato;
 
     return (
       <div className="container">
-        {/* <div id="contrato">
+        <div id="contrato">
           <h2 className="text-center mt-4">
             <strong>CONTRATO DE LOCACION</strong>
           </h2>
@@ -442,7 +443,7 @@ class Contrato extends Component {
           onClick={this.imprimirCD}
         >
           Imprimir Contra Documento
-        </button> */}
+        </button>
       </div>
     );
   }
@@ -451,7 +452,8 @@ class Contrato extends Component {
 const mapStateToProps = state => ({
   unidadFuncional: state.unidadesFuncionales.unidadFuncional,
   contrato: state.contratos.contrato,
-  locatario: state.locatarios.locatario
+  locatario: state.locatarios.locatario,
+  locadores: state.locadores.locador
 
 });
 
