@@ -1,25 +1,18 @@
 import {
-    AGREGAR_CONTRATO, MOSTRAR_CONTRATO
+    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS
 } from "./types";
 
 import axios from "axios";
 
-// export const mostrarUnidadesFuncionales = () => async dispatch => {
-//     const respuesta = await axios.get("http://192.168.1.108:3002/getunidadfunc");
-//     dispatch({
-//         type: MOSTRAR_UNIDADES_FUNCIONALES,
-//         payload: respuesta.data
-//     });
-// };
+export const mostrarContratos = () => async dispatch => {
+    const respuesta = await axios.get("http://192.168.1.108:3002/getcontratos");
+    dispatch({
+        type: MOSTRAR_CONTRATOS,
+        payload: respuesta.data
+    });
+};
 
-// export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
-//     const respuesta = await axios.get(`http://192.168.1.108:3002/getunidadfunc/${id}`);
 
-//     dispatch({
-//         type: MOSTRAR_UNIDAD_FUNCIONAL_TITULAR,
-//         payload: respuesta.data
-//     });
-// };
 
 export const mostrarContrato = id => async dispatch => {
     const respuesta = await axios.get(`http://192.168.1.108:3002/getcontratoselect/${id}`);

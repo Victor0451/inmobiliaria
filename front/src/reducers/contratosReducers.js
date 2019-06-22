@@ -1,5 +1,5 @@
 import {
-    AGREGAR_CONTRATO, MOSTRAR_CONTRATO
+    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS
 } from "../actions/types";
 
 //CADA REDUCER TIENE SU ṔROPIO STATE
@@ -18,11 +18,11 @@ export default function (state = initialState, action) {
                 contrato: action.payload
             };
 
-        //         case MOSTRAR_UNIDAD_FUNCIONAL:
-        //             return {
-        //                 ...state,
-        //                 unidadFuncional: action.payload
-        //             };
+        case MOSTRAR_CONTRATOS:
+            return {
+                ...state,
+                contratos: action.payload
+            };
 
         // case BUSCAR_TITULAR:
         //     return {

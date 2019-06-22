@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import GridUnidadFuncional from "./unidadesfuncionales/GridUnidadFuncional";
+import GridUnidadFuncional from "../components/unidadesfuncionales/GridUnidadFuncional";
 
 
 //redux

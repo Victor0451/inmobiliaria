@@ -99,7 +99,7 @@ class Contrato extends Component {
 
       this.setState({
         contrato: this.props.contrato,
-        locatario: this.props.locatario,
+        locatario: this.props.locatarios.locatarios[0],
         unidadFuncional: this.props.unidadFuncional,
         locador: this.props.locadores
       })
@@ -452,7 +452,7 @@ class Contrato extends Component {
 const mapStateToProps = state => ({
   unidadFuncional: state.unidadesFuncionales.unidadFuncional,
   contrato: state.contratos.contrato,
-  locatario: state.locatarios.locatario,
+  locatarios: state.locatarios,
   locadores: state.locadores.locador
 
 });

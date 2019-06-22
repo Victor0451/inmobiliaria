@@ -1,4 +1,4 @@
-import { AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS } from "../actions/types";
+import { AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS, BUSCAR_LOCATARIO } from "../actions/types";
 
 //CADA REDUCER TIENE SU ṔROPIO STATE
 
@@ -26,11 +26,11 @@ export default function (state = initialState, action) {
         //                 unidadFuncional: action.payload
         //             };
 
-        // case BUSCAR_TITULAR:
-        //     return {
-        //         ...state,
-        //         titular: action.payload
-        //     };
+        case BUSCAR_LOCATARIO:
+            return {
+                ...state,
+                locatario: action.payload
+            };
 
         // case ELIMINAR_PRODUCTO:
         //     return {

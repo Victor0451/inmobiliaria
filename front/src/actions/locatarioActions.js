@@ -1,6 +1,4 @@
-import {
-    AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS
-} from "./types";
+import { AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS, BUSCAR_LOCATARIO } from "./types";
 
 import axios from "axios";
 
@@ -22,14 +20,15 @@ export const mostrarLocatario = id => async dispatch => {
 };
 
 
-// export const buscarTitular = id => async dispatch => {
-//     const respuesta = await axios.get(`http://192.168.1.102:3002/getdatostitular/${id}`);
+export const buscarLocatario = id => async dispatch => {
+    const respuesta = await axios.get(`http://192.168.1.108:3002/getlocatarioselect/${id}`);
 
-//     dispatch({
-//         type: BUSCAR_TITULAR,
-//         payload: respuesta.data
-//     });
-// };
+    dispatch({
+        type: BUSCAR_LOCATARIO,
+        payload: respuesta.data
+    });
+};
+
 // export const borrarProducto = id => async dispatch => {
 //   await axios.delete(`http://localhost:5000/productos/${id}`);
 

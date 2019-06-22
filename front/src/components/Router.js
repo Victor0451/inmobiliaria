@@ -6,10 +6,10 @@ import { Provider } from "react-redux";
 import store from "../store";
 
 import Header from "./layouts/Header";
-import LocatarioContrato from "./LocatarioContrato";
-import Form from "./Form";
-import Contrato from "./Contrato";
-import Contrato2Locat from "./Contrato2Locat";
+import LocatarioContrato from "../contratos/LocatarioContrato";
+import Form from "../contratos/Form";
+import Contrato from "../contratos/Contrato";
+import Contrato2Locat from "../contratos/Contrato2Locat";
 import Locador from "./locadores/Locador";
 import nuevaUnidadFuncional from "./unidadesfuncionales/nuevaUnidadFuncional";
 import unidadFuncional from "./unidadesfuncionales/unidadFuncional";
@@ -19,6 +19,7 @@ import Homepage from "./Homepage";
 import NotFound from "./NotFound";
 import Locatario from "./locatarios/Locatario";
 import Locatarios from './locatarios/locatarios'
+import listadoContratos from "../contratos/listadoContratos";
 
 export default class Router extends Component {
   render() {
@@ -37,6 +38,8 @@ export default class Router extends Component {
             <Route exact path="/crearcontrato/:id" component={LocatarioContrato} />
             <Route exact path="/contrato/:id" component={Contrato} />
             <Route exact path="/contrato2loc/:id" component={Contrato2Locat} />
+            <Route exact path="/contratos/listados" component={listadoContratos} />
+
 
             {/* LOCADOR */}
             <Route exact path="/crearlocador" component={Locador} />
@@ -46,7 +49,7 @@ export default class Router extends Component {
             <Route exact path="/locatarios/nuevo" component={Locatario} />
 
             {/* UNIDADES FUNCIONALES */}
-            <Route exact path="/unidadesfuncionales/" component={unidadesFuncionales} />
+            <Route exact path="/unidadesfuncionales" component={unidadesFuncionales} />
             <Route exact path="/unidadesfuncionales/:id" component={unidadFuncional} />
             <Route exact path="unidadesfuncionales/nuevo" component={nuevaUnidadFuncional} />
 

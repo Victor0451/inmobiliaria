@@ -56,8 +56,9 @@ export default function Header() {
              </Link>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to="/crearlocatario" className="dropdown-item">Igresar Locatario</Link>
+                <Link to="/locatarios" className="dropdown-item">Listado de Locatarios</Link>
                 <div className="dropdown-divider" />
+                <Link to="/locatarios/nuevo" className="dropdown-item">Igresar Locatario</Link>
               </div>
             </li>
 
@@ -74,8 +75,9 @@ export default function Header() {
              </Link>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <Link to="/crearunidadfuncional" className="dropdown-item">Igresar Unidad Funcional</Link>
+                <Link to="/unidadesfuncionales" className="dropdown-item">Listado de Unidades Funcionales</Link>
                 <div className="dropdown-divider" />
+                <Link to="/unidadesfuncionales/nuevo" className="dropdown-item">Igresar Unidad Funcional</Link>
               </div>
             </li>
             <li className="nav-item dropdown">

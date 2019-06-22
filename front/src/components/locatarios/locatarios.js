@@ -62,8 +62,8 @@ class Locatarios extends Component {
                                         </td>
                                         <td>
 
-                                            <Link to={`/crearcontrato/${item.uf_tiponum}`} className="btn btn-primary btn-block" >Selecionar</Link>
-                                            <Link to={`/unidadesfuncionales/${item.uf_tiponum}`} className="btn btn-secondary btn-block" >Mas Informacion</Link>
+                                            <Link to={`/crearcontrato/${item.dni}`} className="btn btn-primary btn-block" >Selecionar</Link>
+                                            <Link to={`/locatario/${item.dni}`} className="btn btn-secondary btn-block" >Mas Informacion</Link>
 
 
                                         </td>
