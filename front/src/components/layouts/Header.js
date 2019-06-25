@@ -6,7 +6,7 @@ export default function Header() {
     <div>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="/">
-          Gestion Inmobiliaria
+          G . C . I
         </a>
         <button
           className="navbar-toggler"
@@ -92,9 +92,10 @@ export default function Header() {
               >Contratos
              </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <Link to="/contratos/listados" className="dropdown-item">Listado de Contratos</Link>
+                <div className="dropdown-divider" />
                 <Link to="/crearcontrato" className="dropdown-item">Igresar Contrato</Link>
 
-                <div className="dropdown-divider" />
               </div>
             </li>
           </div>

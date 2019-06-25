@@ -48,7 +48,9 @@ router.post("/postcontrato", (req, res) => {
     uf_tiponum: req.body.uf_tiponum,
     locador: req.body.titular,
     pagos_contrato: req.body.pagos_contrato,
-    pagos_pagare: req.body.pagos_pagare
+    pagos_pagare: req.body.pagos_pagare,
+    alta: req.body.alta,
+    vencimiento: req.body.vencimiento
   };
 
   console.log(data);

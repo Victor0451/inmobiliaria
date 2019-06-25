@@ -183,12 +183,15 @@ code {
   display: none;
 }
 
-.form-style-8 select {
+.form-style-8 select:required {
   border-color: var(--color-error);
 }
 
 .form-style-8 select:valid {
   border-color: var(--color-primary);
+}
+.form-style-8 select:invalid:focus {
+  border-color: red;
 }
 
 .form-style-8 input:invalid:focus {
