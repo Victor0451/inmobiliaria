@@ -28,8 +28,6 @@ class listadoContratos extends Component {
                                 <th scope="col">DNI 2° Locatario</th>
                                 <th scope="col">N° Unidad Funcional</th>
                                 <th scope="col">Locador</th>
-                                <th scope="col">Pagos por Contrato</th>
-                                <th scope="col">Pagos por Pagare</th>
                                 <th scope="col">Acciones</th>
 
                             </tr>
@@ -54,16 +52,11 @@ class listadoContratos extends Component {
                                         <td>
                                             {item.locador}
                                         </td>
-                                        <td className="toggler">
-                                            {item.pagos_contrato}
-                                        </td>
-                                        <td>
-                                            {item.pagos_pagare}
-                                        </td>
+
                                         <td>
 
-                                            <Link to={`/contrato/${item.id_contrato}`} className="btn btn-primary btn-block" >Renovar</Link>
-                                            <Link to={`/locatario/${item.dni}`} className="btn btn-secondary btn-block" >Mas Informacion</Link>
+                                            <Link to={`/contratos/renovar/${item.id_contrato}`} className="btn btn-primary btn-block" >Renovar</Link>
+                                            <Link to={`/contratos/${item.id_contrato}`} className="btn btn-secondary btn-block" >Mas Informacion</Link>
 
 
                                         </td>

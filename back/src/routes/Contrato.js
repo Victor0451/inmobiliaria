@@ -47,10 +47,17 @@ router.post("/postcontrato", (req, res) => {
     dni_locatario2: req.body.dni2,
     uf_tiponum: req.body.uf_tiponum,
     locador: req.body.titular,
-    pagos_contrato: req.body.pagos_contrato,
-    pagos_pagare: req.body.pagos_pagare,
+    contrato_p1: req.body.contrato_p1,
+    contrato_p2: req.body.contrato_p2,
+    contrato_p3: req.body.contrato_p3,
+    contrato_p4: req.body.contrato_p4,
+    pagare_p1: req.body.pagare_p1,
+    pagare_p2: req.body.pagare_p2,
+    pagare_p3: req.body.pagare_p3,
+    pagare_p4: req.body.pagare_p4,
     alta: req.body.alta,
-    vencimiento: req.body.vencimiento
+    vencimiento: req.body.vencimiento,
+    tipo: req.body.tipo
   };
 
   console.log(data);
@@ -66,5 +73,27 @@ router.post("/postcontrato", (req, res) => {
     }
   });
 });
+
+
+//UPDATE 2 LOC
+
+router.put('/putlocatario/:id', (req, res) => {
+  //const { id_contrato, dni2 } = req.body;
+
+  let dni_locatario2 = req.body.dni2;
+
+  let id = req.params.id;
+
+  let sql = `UPDATE contrato SET dni_locatario2 = ${dni_locatario2} WHERE id_contrato = '${id}'`;
+
+  mysqlConnection.query(sql, (err, rows, fields) => {
+    if (!err) {
+      console.log('Update successfully')
+    } else {
+      console.log(err);
+    }
+  });
+});
+
 
 module.exports = router;

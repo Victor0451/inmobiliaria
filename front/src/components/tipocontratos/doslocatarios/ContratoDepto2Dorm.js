@@ -8,7 +8,7 @@ import { mostrarContrato } from '../../../actions/contratosActions';
 import { mostrarLocador } from '../../../actions/locadoresActions';
 
 
-class ContratoConBaño2L extends Component {
+class ContratoDepto2Dorm extends Component {
 state = {
 locatario: {},
 locatario2: {},
@@ -295,10 +295,12 @@ return (
             <u>QUINTA:</u> El locatario recibe la unidad funcional identificada{" "}
             <strong>N°{uf.uf_tiponum}</strong>
             del <strong>{uf.dir_plan}</strong> en perfectas condiciones de uso, con todos los herrajes, un portero
-            eléctrico, llaves, artefactos de iluminación, Baño privado completo (con mochila, grifería, asiento de
-            inodoro, lavatorio, columna todo marca ferrum) y correctamente pintada y aseada, dando en este acto su mas
-            absoluta conformidad a lo que aquí se manifiesta, comprometiéndose a restituirla al término de la locacion
-            en las mismas condiciones en que la recibió y pintada con la misma calidad de pintura.
+            eléctrico, llaves, artefactos de iluminación, cocina a gas, calefón de 14 litros, mesada de granito gris
+            mara, bajo mesada, cajonera confeccionada en melanina color caoba, tofo con herrajes jafele, Baño privado
+            completo (con mochila, grifería, receptáculo de ducha, ducha, asiento de inodoro, lavatorio, columna todo
+            marca ferrum), dos placares completos de melanina color cedro y correctamente pintada y aseada, dando en
+            este acto su mas absoluta conformidad a lo que aquí se manifiesta, comprometiéndose a restituirla al término
+            de la locacion en las mismas condiciones en que la recibió y pintada con la misma calidad de pintura.
         </p>
 
         <p className="text-justify">
@@ -472,4 +474,4 @@ locadores: state.locadores.locador
 export default connect(
 mapStateToProps,
 { mostrarContrato, mostrarLocatario, mostrarUnidadFuncional, mostrarLocador }
-)(ContratoConBaño2L);
+)(ContratoDepto2Dorm);

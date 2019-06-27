@@ -9,7 +9,7 @@ import FormLocatarioContrato from "./FormLocatarioContrato";
 import { connect } from "react-redux";
 import { mostrarUnidadFuncional } from "../../actions/unidadFuncionalActions";
 import { agregarLocatarioContrato, buscarLocatario } from '../../actions/locatarioActions';
-import { agregarContrato } from '../../actions/contratosActions';
+import { agregarContrato, agregar2Locatario } from '../../actions/contratosActions';
 
 
 class LocatarioContrato extends Component {
@@ -28,8 +28,14 @@ class LocatarioContrato extends Component {
     barrio: '',
     localidad: '',
     dni2: '',
-    pagos_contrato: '',
-    pagos_pagare: '',
+    contrato_p1: '',
+    contrato_p2: '',
+    contrato_p3: '',
+    contrato_p4: '',
+    pagare_p1: '',
+    pagare_p2: '',
+    pagare_p3: '',
+    pagare_p4: '',
     id_contrato: '',
     buscar: '',
     tipo: ''
@@ -60,8 +66,14 @@ class LocatarioContrato extends Component {
     const { uf_tiponum, titular } = this.state.unidadFuncional;
 
     const {
-      pagos_contrato,
-      pagos_pagare,
+      contrato_p1,
+      contrato_p2,
+      contrato_p3,
+      contrato_p4,
+      pagare_p1,
+      pagare_p2,
+      pagare_p3,
+      pagare_p4,
       dni,
       cuit,
       apellido,
@@ -72,6 +84,8 @@ class LocatarioContrato extends Component {
       tipo
 
     } = this.state
+
+    let dnil = dni;
 
 
     if (tipo === '') {
@@ -85,19 +99,22 @@ class LocatarioContrato extends Component {
       const contrato = {
         id_contrato,
         dni,
-        pagos_contrato,
-        pagos_pagare,
         uf_tiponum,
         titular,
         tipo,
         alta,
-        vencimiento
+        vencimiento,
+        contrato_p1,
+        contrato_p2,
+        contrato_p3,
+        contrato_p4,
+        pagare_p1,
+        pagare_p2,
+        pagare_p3,
+        pagare_p4
 
       }
 
-
-
-      let dnil = dni;
 
       const locatario = {
         dnil,
@@ -109,7 +126,9 @@ class LocatarioContrato extends Component {
         localidad
       }
 
+      this.props.agregarLocatarioContrato(locatario);
 
+      this.props.agregarContrato(contrato);
 
       confirmAlert({
         title: "Atencion",
@@ -119,9 +138,7 @@ class LocatarioContrato extends Component {
             label: "Si",
             onClick: () => {
 
-              this.props.agregarLocatarioContrato(locatario);
 
-              console.log(locatario)
 
               form2.hidden = false;
 
@@ -159,13 +176,7 @@ class LocatarioContrato extends Component {
     e.preventDefault();
 
 
-    let alta = this.altaRef.current.value;
-    let vencimiento = this.vencimientoRef.current.value;
-
     const {
-      pagos_contrato,
-      pagos_pagare,
-      dni,
       dni2,
       cuit,
       apellido,
@@ -178,9 +189,7 @@ class LocatarioContrato extends Component {
 
     } = this.state
 
-    const { uf_tiponum, titular } = this.state.unidadFuncional;
-
-    let dnil = dni2;
+    let dnil = dni2
 
     const locatario = {
       dnil,
@@ -194,22 +203,15 @@ class LocatarioContrato extends Component {
 
     const contrato = {
       id_contrato,
-      dni,
-      dni2,
-      pagos_contrato,
-      pagos_pagare,
-      uf_tiponum,
-      titular,
-      tipo,
-      alta,
-      vencimiento
+      dni2
+
     }
 
-    console.log(locatario)
+    console.log(contrato)
 
     this.props.agregarLocatarioContrato(locatario);
 
-    this.props.agregarContrato(contrato);
+    this.props.agregar2Locatario(contrato)
 
     this.props.history.push(`/doslocatario/${tipo}/${id_contrato}`);
 
@@ -255,11 +257,12 @@ class LocatarioContrato extends Component {
 //state
 const mapStateToProps = state => ({
   unidadFuncional: state.unidadesFuncionales.unidadFuncional,
-  locatarios: state.locatarios.locatario
+  locatarios: state.locatarios.locatario,
+  contratos: state.contratos.contratos
 
 });
 
 export default connect(
   mapStateToProps,
-  { mostrarUnidadFuncional, agregarLocatarioContrato, agregarContrato, buscarLocatario }
+  { mostrarUnidadFuncional, agregarLocatarioContrato, agregarContrato, buscarLocatario, agregar2Locatario }
 )(LocatarioContrato);

@@ -8,7 +8,7 @@ import { mostrarContrato } from '../../../actions/contratosActions';
 import { mostrarLocador } from '../../../actions/locadoresActions';
 
 
-class ContratoConBaño2L extends Component {
+class ContratoDepto2Dorm extends Component {
 state = {
 locatario: {},
 locatario2: {},
@@ -53,12 +53,6 @@ this.props.mostrarLocatario(id)
 
 }
 
-traerLocatario2 = () => {
-let id = this.props.contrato.dni_locatario2
-
-this.props.mostrarLocatario(id)
-
-}
 
 traerContrato = () => {
 let id = this.props.match.params.id;
@@ -96,12 +90,6 @@ this.traerLocatario();
 
 setTimeout(() => {
 
-this.traerLocatario2();
-
-}, 400);
-
-setTimeout(() => {
-
 this.traerUnFunc();
 
 }, 500);
@@ -118,7 +106,6 @@ setTimeout(() => {
 this.setState({
 contrato: this.props.contrato,
 locatario: this.props.locatarios.locatarios[0],
-locatario2: this.props.locatarios.locatarios[1],
 unidadFuncional: this.props.unidadFuncional,
 locador: this.props.locadores
 })
@@ -152,7 +139,6 @@ let monthname = month[newDate.getMonth()];
 let year = newDate.getFullYear();
 
 let locatario = this.state.locatario;
-let locatario2 = this.state.locatario2;
 let uf = this.state.unidadFuncional;
 let locador = this.state.locador;
 let contrato = this.state.contrato;
@@ -182,14 +168,7 @@ return (
             <strong>{locatario.cuit}</strong>
             con domicilio en <strong>{locatario.domicilio}</strong> - B°
             <strong>{locatario.barrio}</strong> –
-            <strong>{locatario.localidad}</strong>, –Provincia de Jujuy-, y el
-            Sr.
-            <strong> {locatario2.apellido} </strong>
-            <strong>{locatario2.nombre}</strong>, CUIT
-            <strong>{locatario2.cuit}</strong>
-            con domicilio en <strong>{locatario2.domicilio}</strong> - B°
-            <strong>{locatario2.barrio}</strong> –
-            <strong>{locatario2.localidad}</strong>, –Provincia de Jujuy- en
+            <strong>{locatario.localidad}</strong>, –Provincia de Jujuy-, en
             adelante los “LOCATARIOS”, se conviene en celebrar el presente
             Contrato de Locación Comercial, el que se regirá conforme a las
             siguientes cláusulas:
@@ -295,10 +274,12 @@ return (
             <u>QUINTA:</u> El locatario recibe la unidad funcional identificada{" "}
             <strong>N°{uf.uf_tiponum}</strong>
             del <strong>{uf.dir_plan}</strong> en perfectas condiciones de uso, con todos los herrajes, un portero
-            eléctrico, llaves, artefactos de iluminación, Baño privado completo (con mochila, grifería, asiento de
-            inodoro, lavatorio, columna todo marca ferrum) y correctamente pintada y aseada, dando en este acto su mas
-            absoluta conformidad a lo que aquí se manifiesta, comprometiéndose a restituirla al término de la locacion
-            en las mismas condiciones en que la recibió y pintada con la misma calidad de pintura.
+            eléctrico, llaves, artefactos de iluminación, cocina a gas, calefón de 14 litros, mesada de granito gris
+            mara, bajo mesada, cajonera confeccionada en melanina color caoba, tofo con herrajes jafele, Baño privado
+            completo (con mochila, grifería, receptáculo de ducha, ducha, asiento de inodoro, lavatorio, columna todo
+            marca ferrum), dos placares completos de melanina color cedro y correctamente pintada y aseada, dando en
+            este acto su mas absoluta conformidad a lo que aquí se manifiesta, comprometiéndose a restituirla al término
+            de la locacion en las mismas condiciones en que la recibió y pintada con la misma calidad de pintura.
         </p>
 
         <p className="text-justify">
@@ -398,14 +379,7 @@ return (
             <strong>{locatario.cuit}</strong>
             con domicilio en <strong>{locatario.domicilio}</strong> - B°
             <strong>{locatario.barrio}</strong> –
-            <strong>{locatario.localidad}</strong>, –Provincia de Jujuy-, y el
-            Sr.
-            <strong> {locatario2.apellido} </strong>
-            <strong>{locatario2.nombre}</strong>, CUIT
-            <strong>{locatario2.cuit}</strong>
-            con domicilio en <strong>{locatario2.domicilio}</strong> - B°
-            <strong>{locatario2.barrio}</strong> –
-            <strong>{locatario2.localidad}</strong>, –Provincia de Jujuy- en
+            <strong>{locatario.localidad}</strong>, –Provincia de Jujuy-, en
             adelante los “LOCATARIOS”, convienen en celebrar el
             presente CONTRADOCUMENTO en relación al Contrato de Locación
             celebrado entre las partes en fecha <strong>{date}</strong> de
@@ -472,4 +446,4 @@ locadores: state.locadores.locador
 export default connect(
 mapStateToProps,
 { mostrarContrato, mostrarLocatario, mostrarUnidadFuncional, mostrarLocador }
-)(ContratoConBaño2L);
+)(ContratoDepto2Dorm);

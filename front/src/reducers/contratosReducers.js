@@ -1,5 +1,5 @@
 import {
-    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS
+    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS, AGREGAR2LOC_CONTRATO
 } from "../actions/types";
 
 //CADA REDUCER TIENE SU ṔROPIO STATE
@@ -44,15 +44,15 @@ export default function (state = initialState, action) {
                 contratos: [...state.contratos, action.payload]
             };
 
-        // case EDITAR_PRODUCTO:
-        //     return {
-        //         ...state,
-        //         productos: state.productos.map(producto =>
-        //             producto.id === action.payload.id
-        //                 ? (producto = action.payload)
-        //                 : producto
-        //         )
-        //     };
+        case AGREGAR2LOC_CONTRATO:
+            return {
+                ...state,
+                contratos: state.contratos.map(contrato =>
+                    contrato.id === action.payload.id
+                        ? (contrato = action.payload)
+                        : contrato
+                )
+            };
         default:
             return state;
     }

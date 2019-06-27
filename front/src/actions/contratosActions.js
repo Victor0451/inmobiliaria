@@ -1,5 +1,5 @@
 import {
-    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS
+    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS, AGREGAR2LOC_CONTRATO
 } from "./types";
 
 import axios from "axios";
@@ -52,14 +52,18 @@ export const agregarContrato = contrato => async dispatch => {
     });
 };
 
-  // export const editarProducto = producto => async dispatch => {
-  //   const respuesta = await axios.put(
-  //     `http://localhost:5000/productos/${producto.id}`,
-  //     producto
-  //   );
+export const agregar2Locatario = contrato => async dispatch => {
 
-  //   dispatch({
-  //     type: EDITAR_PRODUCTO,
-  //     payload: respuesta.data
-  //   });
-  // };
+
+    const respuesta = await axios.put(
+        `http://192.168.1.108:3002/putlocatario/${contrato.id_contrato}`,
+        contrato
+    );
+
+    console.log(contrato)
+
+    dispatch({
+        type: AGREGAR2LOC_CONTRATO,
+        payload: respuesta.data
+    });
+};

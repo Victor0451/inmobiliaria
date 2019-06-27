@@ -27,7 +27,7 @@ router.get("/getlocatarioselect/:id", (req, res, next) => {
         res.json(rows[0]);
         res.status('success')
       } else {
-        res.status('Not Found')       
+        res.status('Not Found')
         console.log(err);
       }
     }
@@ -94,5 +94,7 @@ router.post("/postlocatario", (req, res) => {
     }
   });
 });
+
+
 
 module.exports = router;
