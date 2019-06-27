@@ -5,7 +5,7 @@ import {
 import axios from "axios";
 
 export const mostrarContratos = () => async dispatch => {
-    const respuesta = await axios.get("http://192.168.1.108:3002/getcontratos");
+    const respuesta = await axios.get("http://190.52.32.168:3002/getcontratos");
     dispatch({
         type: MOSTRAR_CONTRATOS,
         payload: respuesta.data
@@ -15,7 +15,7 @@ export const mostrarContratos = () => async dispatch => {
 
 
 export const mostrarContrato = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.108:3002/getcontratoselect/${id}`);
+    const respuesta = await axios.get(`http://190.52.32.168:3002/getcontratoselect/${id}`);
 
     dispatch({
         type: MOSTRAR_CONTRATO,
@@ -24,7 +24,7 @@ export const mostrarContrato = id => async dispatch => {
 };
 
 // export const buscarTitular = id => async dispatch => {
-//     const respuesta = await axios.get(`http://192.168.1.108:3002/getdatostitular/${id}`);
+//     const respuesta = await axios.get(`http://190.52.32.168:3002/getdatostitular/${id}`);
 
 //     dispatch({
 //         type: BUSCAR_TITULAR,
@@ -42,7 +42,7 @@ export const mostrarContrato = id => async dispatch => {
 
 export const agregarContrato = contrato => async dispatch => {
     const respuesta = await axios.post(
-        "http://192.168.1.108:3002/postcontrato",
+        "http://190.52.32.168:3002/postcontrato",
         contrato
     );
 
@@ -56,7 +56,7 @@ export const agregar2Locatario = contrato => async dispatch => {
 
 
     const respuesta = await axios.put(
-        `http://192.168.1.108:3002/putlocatario/${contrato.id_contrato}`,
+        `http://190.52.32.168:3002/putlocatario/${contrato.id_contrato}`,
         contrato
     );
 

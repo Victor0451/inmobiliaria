@@ -13,7 +13,7 @@ import axios from "axios";
 // };
 
 export const mostrarLocador = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.108:3002/getlocadorselect/${id}`);
+    const respuesta = await axios.get(`http://190.52.32.168:3002/getlocadorselect/${id}`);
 
     dispatch({
         type: MOSTRAR_LOCADOR,
@@ -40,7 +40,7 @@ export const mostrarLocador = id => async dispatch => {
 
 // export const agregarLocatarioContrato = locatario => async dispatch => {
 //     const respuesta = await axios.post(
-//         "http://192.168.1.108:3002/postlocatariocontrato",
+//         "http://190.52.32.168:3002/postlocatariocontrato",
 //         locatario
 //     );
 

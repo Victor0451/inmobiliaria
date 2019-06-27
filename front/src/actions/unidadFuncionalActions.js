@@ -5,7 +5,7 @@ import {
 import axios from "axios";
 
 export const mostrarUnidadesFuncionales = () => async dispatch => {
-    const respuesta = await axios.get("http://192.168.1.108:3002/getunidadfunc");
+    const respuesta = await axios.get("http://190.52.32.168:3002/getunidadfunc");
     dispatch({
         type: MOSTRAR_UNIDADES_FUNCIONALES,
         payload: respuesta.data
@@ -13,7 +13,7 @@ export const mostrarUnidadesFuncionales = () => async dispatch => {
 };
 
 export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.108:3002/getunidadfunc/${id}`);
+    const respuesta = await axios.get(`http://190.52.32.168:3002/getunidadfunc/${id}`);
 
     dispatch({
         type: MOSTRAR_UNIDAD_FUNCIONAL_TITULAR,
@@ -22,7 +22,7 @@ export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
 };
 
 export const mostrarUnidadFuncional = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.108:3002/getufselect/${id}`);
+    const respuesta = await axios.get(`http://190.52.32.168:3002/getufselect/${id}`);
 
     dispatch({
         type: MOSTRAR_UNIDAD_FUNCIONAL,
@@ -31,7 +31,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 };
 
 // export const buscarTitular = id => async dispatch => {
-//     const respuesta = await axios.get(`http://192.168.1.108:3002/getdatostitular/${id}`);
+//     const respuesta = await axios.get(`http://190.52.32.168:3002/getdatostitular/${id}`);
 
 //     dispatch({
 //         type: BUSCAR_TITULAR,
@@ -49,7 +49,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 
 // export const agregarTitular = titular => async dispatch => {
 //     const respuesta = await axios.post(
-//         "http://192.168.1.108:3002/posttitular",
+//         "http://190.52.32.168:3002/posttitular",
 //         titular
 //     );
 

@@ -3,7 +3,7 @@ import { AGREGAR_LOCATARIO_CONTRATO, MOSTRAR_LOCATARIO, MOSTRAR_LOCATARIOS, BUSC
 import axios from "axios";
 
 export const mostrarLocatarios = () => async dispatch => {
-    const respuesta = await axios.get("http://192.168.1.108:3002/getlocatarios");
+    const respuesta = await axios.get("http://190.52.32.168:3002/getlocatarios");
     dispatch({
         type: MOSTRAR_LOCATARIOS,
         payload: respuesta.data
@@ -11,7 +11,7 @@ export const mostrarLocatarios = () => async dispatch => {
 };
 
 export const mostrarLocatario = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.108:3002/getlocatarioselect/${id}`);
+    const respuesta = await axios.get(`http://190.52.32.168:3002/getlocatarioselect/${id}`);
 
     dispatch({
         type: MOSTRAR_LOCATARIO,
@@ -21,7 +21,7 @@ export const mostrarLocatario = id => async dispatch => {
 
 
 export const buscarLocatario = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.108:3002/getlocatarioselect/${id}`);
+    const respuesta = await axios.get(`http://190.52.32.168:3002/getlocatarioselect/${id}`);
 
     dispatch({
         type: BUSCAR_LOCATARIO,
@@ -40,7 +40,7 @@ export const buscarLocatario = id => async dispatch => {
 
 export const agregarLocatarioContrato = locatario => async dispatch => {
     const respuesta = await axios.post(
-        "http://192.168.1.108:3002/postlocatariocontrato",
+        "http://190.52.32.168:3002/postlocatariocontrato",
         locatario
     );
 
