@@ -293,7 +293,7 @@ return (
         </p>
         <p className="text-justify">
             <u>QUINTA:</u> El locatario recibe la unidad funcional identificada{" "}
-            <strong>N°{uf.uf_tiponum}</strong>
+            <strong>N° {uf.uf_tiponum}</strong>
             del <strong>{uf.dir_plan}</strong> en perfectas condiciones de uso, con todos los herrajes, un portero
             eléctrico, llaves, artefactos de iluminación, cocina a gas, calefón de 14 litros, mesada de granito gris
             mara, bajo mesada, cajonera confeccionada en melanina color caoba, tofo con herrajes jafele, Baño privado

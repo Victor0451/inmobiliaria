@@ -77,7 +77,7 @@ export default function Header() {
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to="/unidadesfuncionales" className="dropdown-item">Listado de Unidades Funcionales</Link>
                 <div className="dropdown-divider" />
-                <Link to="/unidadesfuncionales/nuevo" className="dropdown-item">Igresar Unidad Funcional</Link>
+                <Link to="/unidadfuncional/nuevo" className="dropdown-item">Igresar Unidad Funcional</Link>
               </div>
             </li>
             <li className="nav-item dropdown">

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function FormUnidadFuncional(props) {
-    return (
-        <div>
-             <form className="form-style-8" onSubmit={props.crearUnidadFuncional} id="form">
+export default function FormNuevaUnidadFuncional({ crearUnidadFuncional, leerDatos }) {
+  return (
+    <div>
+      <form className="form-style-8" onSubmit={crearUnidadFuncional} id="form">
         <h2>Datos del locador</h2>
 
         <div className="row">
@@ -14,7 +14,8 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="padron"
                 placeholder="Padron"
-                required
+                onChange={leerDatos}
+
               />
               <label for="in-range-input">Padron</label>
             </p>
@@ -25,7 +26,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="poligono"
                 placeholder="Poligono"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">Poligono</label>
             </p>
@@ -36,7 +37,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="medidor"
                 placeholder="Medidor"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">Medidor</label>
             </p>
@@ -47,7 +48,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="dir_plan"
                 placeholder="Direccion segun plan"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">Direccion Segun Plan</label>
             </p>
@@ -60,7 +61,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="dir_boleta"
                 placeholder="Direccion segun boleta"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">Direccion Segun Boleta</label>
             </p>
@@ -71,7 +72,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="uf_tipo"
                 placeholder="Tipo de Unidad Funcional"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">Tipo de Unidad Funcional</label>
             </p>
@@ -82,7 +83,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="uf_tiponum"
                 placeholder="Numero de Unidad Funcional"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">Numero de Unidad Funcional</label>
             </p>
@@ -93,7 +94,7 @@ export default function FormUnidadFuncional(props) {
                 className=""
                 name="titular"
                 placeholder="DNI del Titular"
-                required
+                onChange={leerDatos}
               />
               <label for="in-range-input">DNI del Titular</label>
             </p>
@@ -104,6 +105,6 @@ export default function FormUnidadFuncional(props) {
           Cargar
         </button>
       </form>
-        </div>
-    )
+    </div>
+  )
 }

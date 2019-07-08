@@ -1,5 +1,5 @@
 import {
-    MOSTRAR_UNIDADES_FUNCIONALES, MOSTRAR_UNIDAD_FUNCIONAL_TITULAR, MOSTRAR_UNIDAD_FUNCIONAL
+    MOSTRAR_UNIDADES_FUNCIONALES, MOSTRAR_UNIDAD_FUNCIONAL_TITULAR, MOSTRAR_UNIDAD_FUNCIONAL, AGREGAR_UNIDAD_FUNCIONAL
 } from "../actions/types";
 
 //CADA REDUCER TIENE SU ṔROPIO STATE
@@ -42,11 +42,11 @@ export default function (state = initialState, action) {
         //         )
         //     };
 
-        // case AGREGAR_LOCATARIO_CONTRATO:
-        //     return {
-        //         ...state,
-        //         locatarios: [...state.locatarios, action.payload]
-        //     };
+        case AGREGAR_UNIDAD_FUNCIONAL:
+            return {
+                ...state,
+                unidadesFuncionales: [...state.unidadesFuncionales, action.payload]
+            };
 
         // case EDITAR_PRODUCTO:
         //     return {

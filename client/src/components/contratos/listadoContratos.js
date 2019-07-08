@@ -16,6 +16,9 @@ class listadoContratos extends Component {
 
     render() {
         const { contratos } = this.props
+
+        if (Object.entries(contratos).length === 0) return <div className="container mt-4 text-center alert alert-success"><strong>No hay registrados</strong></div>
+
         return (
             <div className="form-style-8">
                 <h2> Listado de Contratos </h2>
@@ -28,6 +31,8 @@ class listadoContratos extends Component {
                                 <th scope="col">DNI 2° Locatario</th>
                                 <th scope="col">N° Unidad Funcional</th>
                                 <th scope="col">Locador</th>
+                                <th scope="col">Alta de Contrato</th>
+                                <th scope="col">Vencimiento</th>
                                 <th scope="col">Acciones</th>
 
                             </tr>
@@ -51,6 +56,12 @@ class listadoContratos extends Component {
                                         </td>
                                         <td>
                                             {item.locador}
+                                        </td>
+                                        <td>
+                                            {item.alta}
+                                        </td>
+                                        <td>
+                                            {item.vencimiento}
                                         </td>
 
                                         <td>

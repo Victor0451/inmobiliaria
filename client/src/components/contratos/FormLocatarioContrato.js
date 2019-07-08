@@ -279,13 +279,14 @@ export default class FormLocatarioContrato extends Component {
 
                 <p className="has-dynamic-label">
                   <select id="dynamic-label-input" onChange={leerDatos} defaultValue={"Default"} className="" name="tipo" required >
-                    <option selected value="Default">Tipo de contrato</option>
-                    <option value="contratosinbaño">Oficina Sin Baño</option>
-                    <option value="contratoconbaño" >Oficina Con Baño</option>
-                    <option value="contratosinbaño" >Local Sin Baño</option>
-                    <option value="contratoconbaño" >Local Con Baño</option>
-                    <option value="dptomono" >Dpto Monoambiente</option>
-                    <option value="dpto2dorm" >Dpto Dos Dormitorios</option>
+                    <option selected value="Default">OTERO 464 - Tipo de contrato</option>
+                    <option value="contratosinbaño">OTERO 464 - Oficina Sin Baño</option>
+                    <option value="contratoconbaño" >OTERO 464 - Oficina Con Baño</option>
+                    <option value="contratosinbaño" >OTERO 464 - Local Sin Baño</option>
+                    <option value="contratoconbaño" >OTERO 464 - Local Con Baño</option>
+                    <option value="contratodeptomono" >OTERO 464 - Dpto Monoambiente</option>
+                    <option value="contratodpto2dorm" >OTERO 464 - Dpto Dos Dormitorios</option>
+                    <option value="contratodeptoaleli" >ALELI 779 - Departamentos</option>
                   </select>
                 </p>
 

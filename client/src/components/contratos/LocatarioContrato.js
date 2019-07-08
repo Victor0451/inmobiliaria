@@ -92,7 +92,14 @@ class LocatarioContrato extends Component {
       toastr.warning("Debes si o si seleccionar TIPO DE CONTRATO", "ATENCION")
     } else {
 
-      let id_contrato = `CONT-${dni}-${uf_tiponum}`;
+      let newDate = new Date();
+      let year = newDate.getFullYear();
+      let month = newDate.getMonth();
+
+      let vencimiento_mes = month;
+      let vencimiento_ano = year
+
+      let id_contrato = `CONT-${dni}-${uf_tiponum}-${year}`;
       this.setState({ id_contrato: id_contrato })
 
 
@@ -104,6 +111,8 @@ class LocatarioContrato extends Component {
         tipo,
         alta,
         vencimiento,
+        vencimiento_mes,
+        vencimiento_ano,
         contrato_p1,
         contrato_p2,
         contrato_p3,

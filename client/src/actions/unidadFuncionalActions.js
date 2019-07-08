@@ -1,11 +1,11 @@
 import {
-    MOSTRAR_UNIDADES_FUNCIONALES, MOSTRAR_UNIDAD_FUNCIONAL_TITULAR, MOSTRAR_UNIDAD_FUNCIONAL
+    MOSTRAR_UNIDADES_FUNCIONALES, MOSTRAR_UNIDAD_FUNCIONAL_TITULAR, MOSTRAR_UNIDAD_FUNCIONAL, AGREGAR_UNIDAD_FUNCIONAL
 } from "./types";
 
 import axios from "axios";
 
 export const mostrarUnidadesFuncionales = () => async dispatch => {
-    const respuesta = await axios.get("http://localhost:5000/getunidadfunc");
+    const respuesta = await axios.get("http://192.168.1.108:5000/getunidadfunc");
     dispatch({
         type: MOSTRAR_UNIDADES_FUNCIONALES,
         payload: respuesta.data
@@ -13,7 +13,7 @@ export const mostrarUnidadesFuncionales = () => async dispatch => {
 };
 
 export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
-    const respuesta = await axios.get(`http://localhost:5000/getunidadfunc/${id}`);
+    const respuesta = await axios.get(`http://192.168.1.108:5000/getunidadfunc/${id}`);
 
     dispatch({
         type: MOSTRAR_UNIDAD_FUNCIONAL_TITULAR,
@@ -22,7 +22,7 @@ export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
 };
 
 export const mostrarUnidadFuncional = id => async dispatch => {
-    const respuesta = await axios.get(`http://localhost:5000/getufselect/${id}`);
+    const respuesta = await axios.get(`http://192.168.1.108:5000/getufselect/${id}`);
 
     dispatch({
         type: MOSTRAR_UNIDAD_FUNCIONAL,
@@ -31,7 +31,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 };
 
 // export const buscarTitular = id => async dispatch => {
-//     const respuesta = await axios.get(`http://localhost:5000/getdatostitular/${id}`);
+//     const respuesta = await axios.get(`http://192.168.1.108:5000/getdatostitular/${id}`);
 
 //     dispatch({
 //         type: BUSCAR_TITULAR,
@@ -39,7 +39,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 //     });
 // };
 // export const borrarProducto = id => async dispatch => {
-//   await axios.delete(`http://localhost:5000/productos/${id}`);
+//   await axios.delete(`http://192.168.1.108:5000/productos/${id}`);
 
 //   dispatch({
 //     type: ELIMINAR_PRODUCTO,
@@ -47,21 +47,21 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 //   });
 // };
 
-// export const agregarTitular = titular => async dispatch => {
-//     const respuesta = await axios.post(
-//         "http://localhost:5000/posttitular",
-//         titular
-//     );
+export const agregarUnidadFuncional = unidadfuncional => async dispatch => {
+    const respuesta = await axios.post(
+        "http://192.168.1.108:5000/postunidadfuncional",
+        unidadfuncional
+    );
 
-//     dispatch({
-//         type: AGREGAR_TITULAR,
-//         payload: respuesta.data
-//     });
-// };
+    dispatch({
+        type: AGREGAR_UNIDAD_FUNCIONAL,
+        payload: respuesta.data
+    });
+};
 
   // export const editarProducto = producto => async dispatch => {
   //   const respuesta = await axios.put(
-  //     `http://localhost:5000/productos/${producto.id}`,
+  //     `http://192.168.1.108:5000/productos/${producto.id}`,
   //     producto
   //   );
 

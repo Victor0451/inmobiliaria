@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 
 
 export default class UnidadFuncional extends Component {
+
+
   render() {
+
     const { unidadesFuncionales } = this.props
+
     return (
       <div className="form-style-8">
         <h2> Unidades Funcionales </h2>

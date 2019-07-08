@@ -13,7 +13,7 @@ import axios from "axios";
 // };
 
 export const mostrarLocador = id => async dispatch => {
-    const respuesta = await axios.get(`http://localhost:5000/getlocadorselect/${id}`);
+    const respuesta = await axios.get(`http://192.168.1.108:5000/getlocadorselect/${id}`);
 
     dispatch({
         type: MOSTRAR_LOCADOR,
@@ -30,7 +30,7 @@ export const mostrarLocador = id => async dispatch => {
 //     });
 // };
 // export const borrarProducto = id => async dispatch => {
-//   await axios.delete(`http://localhost:5000/productos/${id}`);
+//   await axios.delete(`http://192.168.1.108:5000/productos/${id}`);
 
 //   dispatch({
 //     type: ELIMINAR_PRODUCTO,
@@ -40,7 +40,7 @@ export const mostrarLocador = id => async dispatch => {
 
 // export const agregarLocatarioContrato = locatario => async dispatch => {
 //     const respuesta = await axios.post(
-//         "http://localhost:5000/postlocatariocontrato",
+//         "http://192.168.1.108:5000/postlocatariocontrato",
 //         locatario
 //     );
 
@@ -52,7 +52,7 @@ export const mostrarLocador = id => async dispatch => {
 
   // export const editarProducto = producto => async dispatch => {
   //   const respuesta = await axios.put(
-  //     `http://localhost:5000/productos/${producto.id}`,
+  //     `http://192.168.1.108:5000/productos/${producto.id}`,
   //     producto
   //   );
 

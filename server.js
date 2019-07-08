@@ -20,6 +20,7 @@ app.use(require('./src/routes/Locatario'));
 app.use(require('./src/routes/Locador'));
 app.use(require('./src/routes/Contrato'));
 
+process.env.NODE_ENV = '';
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
@@ -33,7 +34,7 @@ if (process.env.NODE_ENV === 'production') {
 
 
 // server listening
-
 app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
+    console.log('the process.env.node_env is:',process.env.NODE_ENV)
 });

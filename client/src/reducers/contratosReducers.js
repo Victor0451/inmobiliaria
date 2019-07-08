@@ -1,5 +1,5 @@
 import {
-    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS, AGREGAR2LOC_CONTRATO
+    AGREGAR_CONTRATO, MOSTRAR_CONTRATO, MOSTRAR_CONTRATOS, AGREGAR2LOC_CONTRATO, MOSTRAR_CONTRATOS_VENCIDOS
 } from "../actions/types";
 
 //CADA REDUCER TIENE SU ṔROPIO STATE
@@ -24,19 +24,12 @@ export default function (state = initialState, action) {
                 contratos: action.payload
             };
 
-        // case BUSCAR_TITULAR:
-        //     return {
-        //         ...state,
-        //         titular: action.payload
-        //     };
+        case MOSTRAR_CONTRATOS_VENCIDOS:
+            return {
+                ...state,
+                contratos: action.payload
+            };
 
-        // case ELIMINAR_PRODUCTO:
-        //     return {
-        //         ...state,
-        //         productos: state.productos.filter(
-        //             producto => producto.id !== action.payload
-        //         )
-        //     };
 
         case AGREGAR_CONTRATO:
             return {
@@ -53,6 +46,20 @@ export default function (state = initialState, action) {
                         : contrato
                 )
             };
+
+        // case BUSCAR_TITULAR:
+        //     return {
+        //         ...state,
+        //         titular: action.payload
+        //     };
+
+        // case ELIMINAR_PRODUCTO:
+        //     return {
+        //         ...state,
+        //         productos: state.productos.filter(
+        //             producto => producto.id !== action.payload
+        //         )
+        //     };
         default:
             return state;
     }

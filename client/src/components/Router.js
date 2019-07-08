@@ -13,13 +13,14 @@ import nuevaUnidadFuncional from "./unidadesfuncionales/nuevaUnidadFuncional";
 import unidadFuncional from "./unidadesfuncionales/unidadFuncional";
 import unidadesFuncionales from './unidadesfuncionales/unidadesFuncionales';
 import Contrato from './contratos/contrato';
+import RenovarContrato from './contratos/renovarContrato';
 
 //Tipos de contratos
-
 import ContratoSinBaño2L from './tipocontratos/doslocatarios/ContratoSinBaño2L';
 import ContratoConBaño2L from './tipocontratos/doslocatarios/ContratoConBaño2L';
 import ContratoDeptoMono from './tipocontratos/doslocatarios/ContratoDeptoMono';
 import ContratoDepto2Dorm from './tipocontratos/doslocatarios/ContratoDeptoMono';
+import ContratoDeptoAleli2L from './tipocontratos/doslocatarios/ContratoDeptoAleli2L';
 
 
 import ContratoConBaño1L from './tipocontratos/unlocatario/ContratoConBaño1L';
@@ -52,6 +53,8 @@ export default class Router extends Component {
             <Route exact path="/crearcontrato/:id" component={LocatarioContrato} />
             <Route exact path="/contratos/listados" component={listadoContratos} />
             <Route exact path="/contratos/:id" component={Contrato} />
+            <Route exact path="/contratos/renovar/:id" component={RenovarContrato} />
+
 
 
 
@@ -65,6 +68,8 @@ export default class Router extends Component {
             <Route exact path="/doslocatario/contratosinbaño/:id" component={ContratoSinBaño2L} />
             <Route exact path="/doslocatario/contratodeptomono/:id" component={ContratoDeptoMono} />
             <Route exact path="/doslocatario/contratodepto2dorm/:id" component={ContratoDepto2Dorm} />
+            <Route exact path="/doslocatario/contratodeptoaleli/:id" component={ContratoDeptoAleli2L} />
+
 
 
 
@@ -78,7 +83,8 @@ export default class Router extends Component {
             {/* UNIDADES FUNCIONALES */}
             <Route exact path="/unidadesfuncionales" component={unidadesFuncionales} />
             <Route exact path="/unidadesfuncionales/:id" component={unidadFuncional} />
-            <Route exact path="unidadesfuncionales/nuevo" component={nuevaUnidadFuncional} />
+            <Route exact path="/unidadfuncional/nuevo/" component={nuevaUnidadFuncional} />
+
 
             {/* PAGE NOT FOUND*/}
             <Route component={NotFound} />

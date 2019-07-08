@@ -22,6 +22,24 @@ router.get("/getcontratos", (req, res, next) => {
 });
 
 
+//GET ALL CONTRATOS VENCIDOS
+
+router.get("/getcontratosvencidos/:id", (req, res, next) => {
+  let date = new Date()
+  let year = date.getFullYear();
+  mysqlConnection.query(
+    `SELECT * FROM contrato where vencimiento_mes = ? and vencimiento_ano = ${year}`,
+    [req.params.id],
+    (err, rows, fields) => {
+      if (!err) {
+        res.json(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
+});
+
 //GET BY ID
 
 router.get("/getcontratoselect/:id", (req, res, next) => {
@@ -57,6 +75,8 @@ router.post("/postcontrato", (req, res) => {
     pagare_p4: req.body.pagare_p4,
     alta: req.body.alta,
     vencimiento: req.body.vencimiento,
+    vencimiento_mes: req.body.vencimiento_mes,
+    vencimiento_ano: req.body.vencimiento_ano,
     tipo: req.body.tipo
   };
 

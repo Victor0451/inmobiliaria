@@ -1,20 +1,30 @@
 import React, { Component } from "react";
-import formNuevaUnidadFuncional from "./formNuevaUnidadFuncional";
+import FormNuevaUnidadFuncional from "./formNuevaUnidadFuncional";
+import toastr from '../../utils/toastr'
 
+//redux
+import { connect } from "react-redux";
+import { agregarUnidadFuncional } from "../../actions/unidadFuncionalActions";
 
-export default class nuevaUnidadFuncional extends Component {
+class nuevaUnidadFuncional extends Component {
   state = {
-    unidadfuncional: {
-      padron: "",
-      poligono: "",
-      medidor: "",
-      dir_plan: "",
-      dir_boleta: "",
-      uf_tipo: "",
-      uf_tiponum: "",
-      titular: ""
-    }
+
+    padron: "",
+    poligono: "",
+    medidor: "",
+    dir_plan: "",
+    dir_boleta: "",
+    uf_tipo: "",
+    uf_tiponum: "",
+    locador: ""
+
   };
+
+  leerDatos = e => {
+
+    this.setState({ [e.target.name]: e.target.value })
+
+  }
 
   crearUnidadFuncional = e => {
     e.preventDefault();
@@ -28,40 +38,46 @@ export default class nuevaUnidadFuncional extends Component {
       uf_tipo,
       uf_tiponum,
       titular
-    } = e.target.elements;
-
-    let padronvalue = padron.value;
-    let poligonovalue = poligono.value;
-    let medidorvalue = medidor.value;
-    let dir_planvalue = dir_plan.value;
-    let dir_boletavalue = dir_boleta.value;
-    let uf_tipovalue = uf_tipo.value;
-    let uf_tiponumvalue = uf_tiponum.value;
-    let titularvalue = titular.value;
-
-    this.setState({
-      unidadfuncional: {
-        padron: padronvalue,
-        poligono: poligonovalue,
-        medidor: medidorvalue,
-        dir_plan: dir_planvalue,
-        dir_boleta: dir_boletavalue,
-        uf_tipo: uf_tipovalue,
-        uf_tiponum: uf_tiponumvalue,
-        titular: titularvalue
-      }
-    });
+    } = this.state
 
 
+    const unidadfuncional = {
+      padron,
+      poligono,
+      medidor,
+      dir_plan,
+      dir_boleta,
+      uf_tipo,
+      uf_tiponum,
+      titular
+    }
 
-    //toastr.succes("Locador ingresado con exito!", "ATENCION");
+    this.props.agregarUnidadFuncional(unidadfuncional)
+
+    toastr.success("Locador ingresado con exito!", "ATENCION");
+
   };
+
 
   render() {
     return (
       <div>
-        <formNuevaUnidadFuncional crearUnidadFuncional={this.crearUnidadFuncional} />
+        <FormNuevaUnidadFuncional
+          crearUnidadFuncional={this.crearUnidadFuncional}
+          leerDatos={this.leerDatos}
+        />
       </div>
     );
   }
 }
+
+//state
+const mapStateToProps = state => ({
+  unidadesFuncionales: state.unidadesFuncionales.unidadesFuncionales,
+
+});
+
+export default connect(
+  mapStateToProps,
+  { agregarUnidadFuncional }
+)(nuevaUnidadFuncional);
