@@ -29,7 +29,7 @@ class Homepage extends Component {
 
         return (
             <div className="">
-                <h2 className="text-center my-5">Contratos Por Vencer</h2>
+                <h2 className="text-center my-5"><i class="fas fa-file-contract"></i>Contratos Por Vencer</h2>
                 <div className="row justify-content-center">
                     <div className="col-md-8" >
                         <ul>

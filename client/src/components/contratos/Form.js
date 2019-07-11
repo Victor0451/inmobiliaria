@@ -11,11 +11,11 @@ class Form extends Component {
   selectvalue = () => {
     const id = document.getElementById("locador").value;
     this.props.mostrarUnidadesFuncionalesTitular(id);
-
+    
   };
 
   componentDidMount() {
-    this.props.mostrarUnidadesFuncionales();
+    //this.props.mostrarUnidadesFuncionales();
   }
 
   render() {
