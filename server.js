@@ -10,11 +10,6 @@ const app = express();
 app.use(cors());
 app.use(morgan('dev'));
 
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  next();
-});
-
 app.set('port', process.env.PORT || 5000);
 
 //middlewares
@@ -46,5 +41,5 @@ if (process.env.NODE_ENV === 'production') {
 // server listening
 app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
-    console.log('the process.env.node_env is:',process.env.NODE_ENV)
+    console.log('the process.env.node_env is:', process.env.NODE_ENV)
 });
