@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const mysqlConnection = require("../db/database");
-
+const cors = require("cors")
 
 //GET ALL
 
-router.get("/getunidadfunc", (req, res, next) => {
+router.get("/getunidadfunc", cors(), (req, res, next) => {
   mysqlConnection.query("SELECT * FROM u_funcional", (err, rows, fields) => {
     if (!err) {
       res.json(rows);

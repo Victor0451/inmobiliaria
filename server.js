@@ -9,6 +9,12 @@ const morgan = require('morgan');
 const app = express();
 app.use(cors());
 app.use(morgan('dev'));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  next();
+});
+
 app.set('port', process.env.PORT || 5000);
 
 //middlewares
