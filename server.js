@@ -23,19 +23,19 @@ app.use(require('./src/routes/Contrato'));
 
 
 // Serve static assets if in production
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
 
-    console.log(process.env.NODE_ENV)
+//     console.log(process.env.NODE_ENV)
 
-    // Set static folder
-    app.use(express.static('client/build'));
+//     // Set static folder
+//     app.use(express.static('client/build'));
 
-    app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-    });
-} else {
-    console.log(process.env.NODE_ENV)
-};
+//     app.get('*', (req, res) => {
+//         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+//     });
+// } else {
+//     console.log(process.env.NODE_ENV)
+// };
 
 
 // server listening
