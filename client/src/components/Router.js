@@ -28,6 +28,8 @@ import ContratoSinBaño1L from './tipocontratos/unlocatario/ContratoSinBaño1L';
 import ContratoDeptoMono1l from './tipocontratos/unlocatario/ContratoDeptoMono1l';
 import ContratoDepto2Dorm1l from './tipocontratos/unlocatario/ContratoDepto2Dorm1l';
 
+import ContratoComodato from "./tipocontratos/unlocatario/ContratoComodato";
+
 
 import Homepage from "./Homepage";
 import NotFound from "./NotFound";
@@ -50,6 +52,7 @@ export default class Router extends Component {
 
             {/* CONTRATOS */}
             <Route exact path="/crearcontrato" component={Form} />
+            <Route exact path="/contratocomodato" component={ContratoComodato} />
             <Route exact path="/crearcontrato/:id" component={LocatarioContrato} />
             <Route exact path="/contratos/listados" component={listadoContratos} />
             <Route exact path="/contratos/:id" component={Contrato} />

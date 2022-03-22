@@ -5,7 +5,7 @@ import {
 import axios from "axios";
 
 export const mostrarUnidadesFuncionales = () => async dispatch => {
-    const respuesta = await axios.get("http://192.168.1.104:5000/getunidadfunc");
+    const respuesta = await axios.get("http://192.168.1.100:5000/getunidadfunc");
     dispatch({
         type: MOSTRAR_UNIDADES_FUNCIONALES,
         payload: respuesta.data
@@ -13,7 +13,7 @@ export const mostrarUnidadesFuncionales = () => async dispatch => {
 };
 
 export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.104:5000/getunidadfunc/${id}`);
+    const respuesta = await axios.get(`http://192.168.1.100:5000/getunidadfunc/${id}`);
 
     dispatch({
         type: MOSTRAR_UNIDAD_FUNCIONAL_TITULAR,
@@ -22,7 +22,7 @@ export const mostrarUnidadesFuncionalesTitular = id => async dispatch => {
 };
 
 export const mostrarUnidadFuncional = id => async dispatch => {
-    const respuesta = await axios.get(`http://192.168.1.104:5000/getufselect/${id}`);
+    const respuesta = await axios.get(`http://192.168.1.100:5000/getufselect/${id}`);
 
     dispatch({
         type: MOSTRAR_UNIDAD_FUNCIONAL,
@@ -31,7 +31,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 };
 
 // export const buscarTitular = id => async dispatch => {
-//     const respuesta = await axios.get(`http://192.168.1.104:5000/getdatostitular/${id}`);
+//     const respuesta = await axios.get(`http://192.168.1.100:5000/getdatostitular/${id}`);
 
 //     dispatch({
 //         type: BUSCAR_TITULAR,
@@ -39,7 +39,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 //     });
 // };
 // export const borrarProducto = id => async dispatch => {
-//   await axios.delete(`http://192.168.1.104:5000/productos/${id}`);
+//   await axios.delete(`http://192.168.1.100:5000/productos/${id}`);
 
 //   dispatch({
 //     type: ELIMINAR_PRODUCTO,
@@ -49,7 +49,7 @@ export const mostrarUnidadFuncional = id => async dispatch => {
 
 export const agregarUnidadFuncional = unidadfuncional => async dispatch => {
     const respuesta = await axios.post(
-        "http://192.168.1.104:5000/postunidadfuncional",
+        "http://192.168.1.100:5000/postunidadfuncional",
         unidadfuncional
     );
 
@@ -61,7 +61,7 @@ export const agregarUnidadFuncional = unidadfuncional => async dispatch => {
 
   // export const editarProducto = producto => async dispatch => {
   //   const respuesta = await axios.put(
-  //     `http://192.168.1.104:5000/productos/${producto.id}`,
+  //     `http://192.168.1.100:5000/productos/${producto.id}`,
   //     producto
   //   );
 

@@ -192,15 +192,15 @@ class ContratoDeptoAleli2L extends Component {
               <strong> ${contrato.contrato_p1}</strong>. sirviendo la presente
               de suficiente recibo por dicho importe, aplicado al concepto de
               pago anticipado de un mes de alquiler, correspondientes al mes de{" "}
-              <strong>{monthname} </strong>
-              del año <strong>{year}</strong>. Por otra parte, los locatarios
+              <strong>Agosto </strong>
+              del año <strong>2021</strong>. Por otra parte, los locatarios
               presentan documentación suficiente – fotocopias de recibos de
               sueldos, fotocopias de documentos, una vez que se haya abonados
               todos los alquileres, gastos de remodelación, impuestos y
               servicios por parte de LOS LOCATARIOS y eventuales reparaciones en
               el inmueble alquilado. En caso de existir saldo a pagar por los
               conceptos enunciados de abonaran por parte el total, hasta cubrir
-              los mismos. 
+              los mismos.
               LOS LOCATARIOS se compromete a respetar y/o a cumplir
               cabalmente las disposiciones estatuídas en el Reglamento de
               Copropiedad y/o Convivencia que se encuentren vigentes durante el
@@ -249,8 +249,8 @@ class ContratoDeptoAleli2L extends Component {
             </p>
 
             <p className="text-justify">
-              <u>QUINTA:</u> El presente contrato se celebra por el plazo de DOS
-              (2) años a contar desde el día
+              <u>QUINTA:</u> El presente contrato se celebra por el plazo de TRES
+              (3) años a contar desde el día
               <strong> {alta}</strong>, por lo que su vencimiento operará, sin
               necesidad de requerimiento previo alguno, judicial ni
               extrajudicial, el día
@@ -281,16 +281,20 @@ class ContratoDeptoAleli2L extends Component {
             </p>
 
             <p className="text-justify">
-              <u>SEXTA:</u> Se fija de común acuerdo, en concepto de precio
+              <u>SEXTA:</u> Se fija de común acuerdo
+              {/* en concepto de precio
               locativo total de $ <strong>{ctotal}</strong> (pesos ochenta y
-              cuatro mil ochocientos cuatro), a pagar de la siguiente forma: (
-              <strong>${contrato.contrato_p1}</strong>) para el primer semestre
+              cuatro mil ochocientos cuatro)  */}
+               la forma de pago de la siguiente forma: (
+              <strong>${contrato.contrato_p1}</strong>) para el primer año
               de vigencia del presente contrato; de PESOS (
               <strong>$ {contrato.contrato_p2}</strong>)para el segundo
-              semestre; de PESOS (<strong>${contrato.contrato_p3}</strong>) para
-              el tercer semestre: de PESOS (
+              año; de PESOS (<strong>${contrato.contrato_p3}</strong>) para
+              el tercer año.
+              {/* de PESOS (
               <strong>$ {contrato.contrato_p4}</strong>) para el cuarto último
-              semestre. Dicho precio locativo mensual deberá abonarse por
+              semestre. */}
+              Dicho precio locativo mensual deberá abonarse por
               mesadelantado del día 1º al 10º del mes que corresponda, en el
               domicilio de LA LOCADORA o en el lugar que éste indique en lo
               sucesivo por medio fehaciente, produciéndose la mora de pleno
@@ -429,8 +433,8 @@ class ContratoDeptoAleli2L extends Component {
               dos ejemplares de un mismo tenor y a un solo efecto, recibiendo
               cada parte su respectivo ejemplar, en la ciudad de San Salvador de
               Jujuy, Provincia de Jujuy, República Argentina, al día{" "}
-              <strong>01</strong> del mes de <strong>Noviembre</strong> del año{" "}
-              <strong>{year}</strong>.
+              <strong>01</strong> del mes de <strong>Agosto</strong> del año{" "}
+              <strong>2020</strong>.
             </p>
           </font>
         </div>

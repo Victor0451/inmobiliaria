@@ -34,7 +34,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >Locador
-             </Link>
+              </Link>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to="/crearlocador" className="dropdown-item">Igresar Locador</Link>
@@ -53,7 +53,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >Locatario
-             </Link>
+              </Link>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to="/locatarios" className="dropdown-item">Listado de Locatarios</Link>
@@ -72,7 +72,7 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >Unidad Funcional
-             </Link>
+              </Link>
 
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to="/unidadesfuncionales" className="dropdown-item">Listado de Unidades Funcionales</Link>
@@ -90,12 +90,13 @@ export default function Header() {
                 aria-haspopup="true"
                 aria-expanded="false"
               >Contratos
-             </Link>
+              </Link>
               <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <Link to="/contratos/listados" className="dropdown-item">Listado de Contratos</Link>
                 <div className="dropdown-divider" />
                 <Link to="/crearcontrato" className="dropdown-item">Igresar Contrato</Link>
-
+                <div className="dropdown-divider" />
+                <Link to="/contratocomodato" className="dropdown-item">Contrato Comodato</Link>
               </div>
             </li>
           </div>
